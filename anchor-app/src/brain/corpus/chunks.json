@@ -1,0 +1,338 @@
+[
+  {
+    "id": "dbt-dt-001",
+    "text": "The 5-4-3-2-1 grounding technique is a sensory awareness exercise designed to bring your attention to the present moment. To practice: name 5 things you can see around you, 4 things you can physically touch or feel, 3 things you can hear, 2 things you can smell, and 1 thing you can taste. This technique interrupts rumination and panic by redirecting cognitive resources to immediate sensory input, effectively reducing the intensity of emotional distress.",
+    "sourceTitle": "DBT Skills Training Manual — Distress Tolerance",
+    "sourceRef": "Linehan, M.M. (2015). DBT Skills Training Manual, 2nd Edition. Guilford Press.",
+    "techniqueName": "5-4-3-2-1 Grounding",
+    "category": "grounding"
+  },
+  {
+    "id": "dbt-dt-002",
+    "text": "TIPP skills are designed to rapidly change your body chemistry when emotions are extremely intense. Temperature: apply cold water to your face or hold ice cubes — this triggers the dive reflex and slows heart rate. Intense exercise: even 5-10 minutes of vigorous activity can metabolize stress hormones. Paced breathing: breathe out longer than you breathe in (e.g., 4 counts in, 6 counts out) to activate the parasympathetic nervous system. Progressive muscle relaxation: systematically tense and release muscle groups from toes to head.",
+    "sourceTitle": "DBT Skills Training Manual — Distress Tolerance",
+    "sourceRef": "Linehan, M.M. (2015). DBT Skills Training Manual, 2nd Edition. Guilford Press.",
+    "techniqueName": "TIPP Skills",
+    "category": "distress_tolerance"
+  },
+  {
+    "id": "dbt-dt-003",
+    "text": "Distraction with ACCEPTS is a distress tolerance technique. Activities: engage in an absorbing task. Contributing: do something for someone else. Comparisons: compare to times you've handled difficulty. Emotions: generate a different emotion (watch something funny, listen to uplifting music). Pushing away: mentally put the distressing situation in a box and set it aside temporarily. Thoughts: replace distressing thoughts by counting, doing puzzles, or reciting song lyrics. Sensations: use intense physical sensations like holding ice or snapping a rubber band to interrupt emotional spiraling.",
+    "sourceTitle": "DBT Skills Training Manual — Distress Tolerance",
+    "sourceRef": "Linehan, M.M. (2015). DBT Skills Training Manual, 2nd Edition. Guilford Press.",
+    "techniqueName": "ACCEPTS Distraction",
+    "category": "distress_tolerance"
+  },
+  {
+    "id": "dbt-dt-004",
+    "text": "Radical acceptance does not mean approval — it means acknowledging reality as it is, without fighting it. Pain is inevitable; suffering is pain plus non-acceptance. When you catch yourself thinking 'this shouldn't be happening,' practice turning your mind toward acceptance: 'This is what is. I can cope with what is.' Practicing radical acceptance of a slip means saying: 'This happened. It doesn't erase my progress. What do I do next?' This is the opposite of catastrophizing, which drives relapse cycles.",
+    "sourceTitle": "DBT Skills Training Manual — Distress Tolerance",
+    "sourceRef": "Linehan, M.M. (2015). DBT Skills Training Manual, 2nd Edition. Guilford Press.",
+    "techniqueName": "Radical Acceptance",
+    "category": "distress_tolerance"
+  },
+  {
+    "id": "dbt-dt-005",
+    "text": "Urge surfing is a mindfulness-based technique for managing cravings without acting on them. Instead of fighting the urge, observe it with curiosity: Where do you feel it in your body? What does it feel like — tight, warm, buzzing? Notice that urges are like ocean waves — they build, crest, and always subside. Most urges peak within 15-20 minutes if you don't feed them. Practice riding the wave: breathe, observe, and let it pass. Each time you surf an urge, you build evidence that you can tolerate it.",
+    "sourceTitle": "DBT Skills Training Manual — Distress Tolerance",
+    "sourceRef": "Linehan, M.M. (2015). DBT Skills Training Manual, 2nd Edition. Guilford Press.",
+    "techniqueName": "Urge Surfing",
+    "category": "relapse_prevention"
+  },
+  {
+    "id": "dbt-er-001",
+    "text": "Opposite Action is an emotion regulation skill: when an emotion's action urge is not justified by the facts, act opposite to the urge. If sadness urges you to withdraw, take a small step toward connection. If anxiety urges you to avoid, approach the situation gradually. If anger urges you to attack, step back and practice gentle communication. The key is to act opposite ALL THE WAY — opposite facial expression, opposite body posture, opposite action. Half-measures maintain the emotion rather than changing it.",
+    "sourceTitle": "DBT Skills Training Manual — Emotion Regulation",
+    "sourceRef": "Linehan, M.M. (2015). DBT Skills Training Manual, 2nd Edition. Guilford Press.",
+    "techniqueName": "Opposite Action",
+    "category": "emotion_regulation"
+  },
+  {
+    "id": "dbt-er-002",
+    "text": "PLEASE skills reduce emotional vulnerability by addressing basic biological needs. Treat PhysicaL illness: see a doctor, take prescribed medications. Balanced Eating: eat regularly, avoid foods that destabilize mood. Avoid mood-altering substances: these interfere with emotion regulation and recovery. Balanced Sleep: aim for consistent sleep and wake times, practice sleep hygiene. Exercise: regular physical activity is one of the most evidence-based mood interventions available. These are not optional extras — they are the foundation that makes other coping skills possible.",
+    "sourceTitle": "DBT Skills Training Manual — Emotion Regulation",
+    "sourceRef": "Linehan, M.M. (2015). DBT Skills Training Manual, 2nd Edition. Guilford Press.",
+    "techniqueName": "PLEASE Skills",
+    "category": "self_care"
+  },
+  {
+    "id": "dbt-er-003",
+    "text": "Building positive experiences is a core emotion regulation strategy. In the short term: do at least one pleasant activity each day — even small ones count. Make a list of activities that bring you joy or a sense of accomplishment. In the long term: identify your values and work toward goals aligned with them. Accumulating positive experiences creates an emotional reserve that buffers against distress. In recovery, this means deliberately building a life worth living — one that makes sobriety feel like a gain, not just an absence.",
+    "sourceTitle": "DBT Skills Training Manual — Emotion Regulation",
+    "sourceRef": "Linehan, M.M. (2015). DBT Skills Training Manual, 2nd Edition. Guilford Press.",
+    "techniqueName": "Building Positive Experiences",
+    "category": "emotion_regulation"
+  },
+  {
+    "id": "dbt-er-004",
+    "text": "Check the Facts is an emotion regulation skill that helps determine whether your emotional response fits the actual situation. Steps: 1) Describe the triggering event — just the facts, no interpretations. 2) Identify your interpretations and assumptions. 3) Ask: 'Is my interpretation supported by evidence?' 4) Ask: 'Does the intensity and duration of my emotion fit the facts?' If not, use Opposite Action. This skill is particularly useful in recovery when catastrophic thinking ('one slip means I've failed completely') can trigger a full relapse.",
+    "sourceTitle": "DBT Skills Training Manual — Emotion Regulation",
+    "sourceRef": "Linehan, M.M. (2015). DBT Skills Training Manual, 2nd Edition. Guilford Press.",
+    "techniqueName": "Check the Facts",
+    "category": "emotion_regulation"
+  },
+  {
+    "id": "dbt-mind-001",
+    "text": "Mindful breathing is the foundation of mindfulness practice. Focus your attention on the physical sensation of breathing — the rise and fall of your chest, the air moving through your nostrils, the pause between breaths. When your mind wanders (it will), gently notice where it went without judgment, and return your attention to the breath. This is not a failure — the noticing and returning IS the practice. Start with 2-3 minutes and build up. Research shows consistent mindfulness practice reduces reactivity to triggers and cravings over time.",
+    "sourceTitle": "DBT Skills Training Manual — Mindfulness",
+    "sourceRef": "Linehan, M.M. (2015). DBT Skills Training Manual, 2nd Edition. Guilford Press.",
+    "techniqueName": "Mindful Breathing",
+    "category": "mindfulness"
+  },
+  {
+    "id": "dbt-mind-002",
+    "text": "Non-judgmental observation means watching your thoughts and feelings as if they were clouds passing through the sky — you notice them, describe them, but you don't grab onto them or push them away. Replace judgments with descriptions: instead of 'I'm so stupid for craving,' say 'I notice I'm having a craving and I'm judging myself for it.' This creates distance between you and the experience. In recovery, the ability to observe a craving without reacting to it is one of the most protective skills you can build.",
+    "sourceTitle": "DBT Skills Training Manual — Mindfulness",
+    "sourceRef": "Linehan, M.M. (2015). DBT Skills Training Manual, 2nd Edition. Guilford Press.",
+    "techniqueName": "Non-Judgmental Observation",
+    "category": "mindfulness"
+  },
+  {
+    "id": "dbt-ie-001",
+    "text": "The DEAR MAN skill is for making effective requests or saying no while maintaining the relationship. Describe the situation factually. Express your feelings using 'I' statements. Assert what you want or need clearly. Reinforce by explaining the positive outcome. Be Mindful — stay focused on your goal, don't get sidetracked. Appear confident even if you don't feel it. Negotiate — be willing to give to get. In recovery, this skill is essential for setting boundaries with people who may not support your sobriety.",
+    "sourceTitle": "DBT Skills Training Manual — Interpersonal Effectiveness",
+    "sourceRef": "Linehan, M.M. (2015). DBT Skills Training Manual, 2nd Edition. Guilford Press.",
+    "techniqueName": "DEAR MAN",
+    "category": "interpersonal"
+  },
+  {
+    "id": "samhsa-001",
+    "text": "SAMHSA's National Helpline (1-800-662-4357) is a free, confidential, 24/7, 365-day-a-year treatment referral and information service (in English and Spanish) for individuals and families facing mental and/or substance use disorders. This service provides referrals to local treatment facilities, support groups, and community-based organizations. The helpline also offers a free text messaging service. Callers do not need to provide personal information, and the service is available to anyone regardless of insurance status.",
+    "sourceTitle": "SAMHSA National Helpline Guide",
+    "sourceRef": "https://www.samhsa.gov/find-help/national-helpline",
+    "techniqueName": null,
+    "category": "crisis_resources"
+  },
+  {
+    "id": "samhsa-002",
+    "text": "The 988 Suicide and Crisis Lifeline provides 24/7, free and confidential support for people in distress, as well as prevention and crisis resources. You can call or text 988 to connect with a trained crisis counselor. The service is available to anyone in the United States experiencing a mental health crisis, including thoughts of suicide, substance use crisis, or emotional distress. Specialized services are available for veterans (press 1), Spanish speakers (press 2), and LGBTQI+ youth via the Trevor Project.",
+    "sourceTitle": "988 Suicide & Crisis Lifeline",
+    "sourceRef": "https://988lifeline.org/",
+    "techniqueName": null,
+    "category": "crisis_resources"
+  },
+  {
+    "id": "samhsa-003",
+    "text": "Crisis Text Line provides free, 24/7 crisis counseling via text message. Text HOME to 741741 to connect with a trained Crisis Counselor. The service is designed for anyone in any type of crisis — not just suicide. Common topics include anxiety, depression, substance use, self-harm, relationship issues, bullying, and more. Conversations are confidential, and trained counselors use active listening and collaborative problem-solving to help you move from a hot moment to a cool calm.",
+    "sourceTitle": "Crisis Text Line — Support Resources",
+    "sourceRef": "https://www.crisistextline.org/",
+    "techniqueName": null,
+    "category": "crisis_resources"
+  },
+  {
+    "id": "samhsa-tip35-001",
+    "text": "Motivational interviewing recognizes that ambivalence about change is normal, not pathological. Recovery is rarely a straight line — it involves stages of precontemplation, contemplation, preparation, action, and maintenance. A slip does not reset you to square one; it provides valuable information about triggers and vulnerabilities. The key question after a slip is not 'why did I fail?' but 'what can I learn from this?' Approaching setbacks with curiosity rather than shame reduces the likelihood of a full relapse.",
+    "sourceTitle": "SAMHSA TIP 35: Enhancing Motivation for Change",
+    "sourceRef": "SAMHSA Treatment Improvement Protocol (TIP) Series, No. 35.",
+    "techniqueName": "Motivational Interviewing Principles",
+    "category": "relapse_prevention"
+  },
+  {
+    "id": "samhsa-tip35-002",
+    "text": "Recognizing and reinforcing positive change experiences helps build self-efficacy and sustain motivation for continued recovery. Self-efficacy — the belief in your own ability to cope — is one of the strongest predictors of long-term recovery success. Building self-efficacy involves: setting achievable goals, recognizing small wins, learning from setbacks without self-blame, and surrounding yourself with supportive people. Each day of recovery is an accomplishment worth acknowledging.",
+    "sourceTitle": "SAMHSA TIP 35: Enhancing Motivation for Change",
+    "sourceRef": "SAMHSA Treatment Improvement Protocol (TIP) Series, No. 35.",
+    "techniqueName": "Building Self-Efficacy",
+    "category": "relapse_prevention"
+  },
+  {
+    "id": "samhsa-tip63-001",
+    "text": "Stress management is a critical component of recovery. Chronic stress activates the same brain reward pathways that substances hijack, making cravings more intense and relapse more likely. Evidence-based stress reduction techniques include: controlled breathing exercises (4-7-8 breathing: inhale for 4 counts, hold for 7, exhale for 8), progressive muscle relaxation, regular physical activity, adequate sleep, social connection, and mindfulness practices. Building a daily stress management routine reduces overall vulnerability to relapse.",
+    "sourceTitle": "SAMHSA TIP 63: Medications for Opioid Use Disorder",
+    "sourceRef": "SAMHSA Treatment Improvement Protocol (TIP) Series, No. 63.",
+    "techniqueName": "4-7-8 Breathing",
+    "category": "breathing"
+  },
+  {
+    "id": "nida-001",
+    "text": "Addiction is a complex brain disorder characterized by compulsive substance use despite harmful consequences. It is not a moral failing or a lack of willpower. Long-term substance use changes brain circuits involved in reward, stress, and self-control, and these changes can persist long after substance use stops. Recovery is possible, and treatment approaches that address the whole person — including behavioral therapies, medications when appropriate, and support services — have been shown to be effective.",
+    "sourceTitle": "NIDA DrugFacts: Understanding Drug Use and Addiction",
+    "sourceRef": "https://nida.nih.gov/publications/drugfacts/understanding-drug-use-addiction",
+    "techniqueName": null,
+    "category": "relapse_prevention"
+  },
+  {
+    "id": "nida-002",
+    "text": "Triggers are people, places, things, situations, or internal states (emotions, thoughts, physical sensations) that create urges to use substances. Common triggers include: stress, people associated with past use, specific locations, celebrations, loneliness, boredom, anger, physical pain, and exposure to substances. Identifying your personal triggers is the first step in managing them. Strategies include: avoiding triggers when possible, having a plan for unavoidable triggers, practicing coping skills in advance, and reaching out for support before a craving becomes overwhelming.",
+    "sourceTitle": "NIDA DrugFacts: Treatment Approaches for Drug Addiction",
+    "sourceRef": "https://nida.nih.gov/publications/drugfacts/treatment-approaches-drug-addiction",
+    "techniqueName": "Trigger Identification",
+    "category": "relapse_prevention"
+  },
+  {
+    "id": "smart-001",
+    "text": "The SMART Recovery approach uses a cost-benefit analysis (CBA) tool to help evaluate substance use decisions. Create a four-quadrant chart: benefits of using, costs of using, benefits of not using, costs of not using. Be completely honest with each quadrant. This exercise helps move ambivalence toward clarity by making the trade-offs visible. Revisit the CBA when motivation wavers. Over time, as recovery benefits accumulate, the balance shifts naturally — and you have a record of that shift to look back on.",
+    "sourceTitle": "SMART Recovery — Self-Management and Recovery Training",
+    "sourceRef": "https://www.smartrecovery.org/smart-recovery-toolbox/",
+    "techniqueName": "Cost-Benefit Analysis",
+    "category": "relapse_prevention"
+  },
+  {
+    "id": "smart-002",
+    "text": "The DISARM technique (Destructive Images and Self-talk Awareness and Refusal Method) helps recognize and challenge the internal 'voice' that encourages substance use. This voice often uses minimization ('just one won't hurt'), entitlement ('I deserve it after the day I've had'), and rationalization ('everyone does it'). DISARM involves: 1) recognizing the voice as a separate entity from your true self, 2) labeling it ('that's my addiction talking'), 3) questioning its logic, and 4) replacing it with realistic self-talk grounded in your values and goals.",
+    "sourceTitle": "SMART Recovery — Self-Management and Recovery Training",
+    "sourceRef": "https://www.smartrecovery.org/smart-recovery-toolbox/",
+    "techniqueName": "DISARM",
+    "category": "relapse_prevention"
+  },
+  {
+    "id": "breathing-001",
+    "text": "Box breathing (also called four-square breathing) is a simple technique used by Navy SEALs and first responders to manage stress: breathe in for 4 counts, hold for 4 counts, breathe out for 4 counts, hold for 4 counts. Repeat for 4 cycles. This technique is effective because the extended exhale and breath holds stimulate the vagus nerve, activating the parasympathetic ('rest and digest') nervous system and reducing cortisol levels. It can be done anywhere, anytime, without anyone noticing.",
+    "sourceTitle": "DBT Skills Training Manual — Distress Tolerance",
+    "sourceRef": "Linehan, M.M. (2015). DBT Skills Training Manual, 2nd Edition. Guilford Press.",
+    "techniqueName": "Box Breathing",
+    "category": "breathing"
+  },
+  {
+    "id": "breathing-002",
+    "text": "The 4-7-8 breathing pattern is a calming technique recommended for anxiety and craving management: inhale quietly through the nose for 4 counts, hold the breath for 7 counts, then exhale completely through the mouth for 8 counts. The extended exhale is the key — it activates the parasympathetic nervous system more strongly than normal breathing. Practice twice daily and use during moments of distress. This technique can be combined with progressive muscle relaxation for enhanced effect.",
+    "sourceTitle": "SAMHSA TIP 63: Medications for Opioid Use Disorder",
+    "sourceRef": "SAMHSA Treatment Improvement Protocol (TIP) Series, No. 63.",
+    "techniqueName": "4-7-8 Breathing Pattern",
+    "category": "breathing"
+  },
+  {
+    "id": "grounding-001",
+    "text": "The body scan is a mindfulness-based grounding exercise: sit or lie comfortably, close your eyes, and bring attention to your body starting at your feet. Notice any sensations — warmth, tension, tingling, numbness — without trying to change them. Slowly move your attention up through your legs, abdomen, chest, arms, and head. If your mind wanders, gently return to where you left off. The body scan works by engaging the interoceptive awareness network, shifting attention from ruminative thinking to present-moment physical sensation.",
+    "sourceTitle": "DBT Skills Training Manual — Mindfulness",
+    "sourceRef": "Linehan, M.M. (2015). DBT Skills Training Manual, 2nd Edition. Guilford Press.",
+    "techniqueName": "Body Scan",
+    "category": "grounding"
+  },
+  {
+    "id": "grounding-002",
+    "text": "The STOP skill is a quick mindfulness technique for interrupting impulsive reactions: Stop what you're doing. Take a step back — physically or mentally. Observe what's happening inside you and around you — notice thoughts, feelings, and urges without acting on them. Proceed mindfully — choose a response aligned with your values rather than reacting automatically. This skill is particularly effective when a craving or trigger catches you off guard, because it creates a pause between stimulus and response.",
+    "sourceTitle": "DBT Skills Training Manual — Mindfulness",
+    "sourceRef": "Linehan, M.M. (2015). DBT Skills Training Manual, 2nd Edition. Guilford Press.",
+    "techniqueName": "STOP Skill",
+    "category": "mindfulness"
+  },
+  {
+    "id": "relapse-001",
+    "text": "A relapse prevention plan should include: 1) Your personal triggers (people, places, emotions, situations). 2) Early warning signs (changes in sleep, mood, isolation, romanticizing past use). 3) Coping strategies matched to specific triggers. 4) People you can call — at least 3 names and numbers. 5) Professional resources and helpline numbers. 6) Activities that have helped before. 7) Reasons for recovery — why you started this journey. Review this plan weekly during stable times so it's familiar when you need it. Store it somewhere accessible — your recovery companion app, your phone, a card in your wallet.",
+    "sourceTitle": "SAMHSA TIP 35: Enhancing Motivation for Change",
+    "sourceRef": "SAMHSA Treatment Improvement Protocol (TIP) Series, No. 35.",
+    "techniqueName": "Relapse Prevention Planning",
+    "category": "relapse_prevention"
+  },
+  {
+    "id": "relapse-002",
+    "text": "The abstinence violation effect (AVE) describes the pattern where a single slip triggers catastrophic thinking ('I've ruined everything') which leads to full relapse. Recognizing AVE is a critical recovery skill. A slip is a single event — it does not erase your progress. Counter AVE by: 1) Reframing the slip as information, not failure. 2) Identifying the specific trigger. 3) Reconnecting with your reasons for recovery. 4) Reaching out to a support person within 24 hours. 5) Getting back to your routine as soon as possible. The slip happened — what matters is what you do next.",
+    "sourceTitle": "NIDA DrugFacts: Treatment Approaches for Drug Addiction",
+    "sourceRef": "https://nida.nih.gov/publications/drugfacts/treatment-approaches-drug-addiction",
+    "techniqueName": "Abstinence Violation Effect",
+    "category": "relapse_prevention"
+  },
+  {
+    "id": "selfcare-001",
+    "text": "Sleep hygiene is foundational to recovery. Poor sleep increases cortisol, weakens impulse control, and intensifies cravings. Evidence-based sleep practices: 1) Consistent bed and wake times, even on weekends. 2) Bedroom for sleep only — no screens in bed. 3) Avoid caffeine after noon. 4) Cool, dark, quiet environment. 5) Wind-down routine: dim lights 1 hour before bed, warm shower or bath, gentle stretching. 6) If you can't sleep after 20 minutes, get up and do something calm until drowsy. 7) Limit naps to 20 minutes before 3pm.",
+    "sourceTitle": "SAMHSA TIP 63: Medications for Opioid Use Disorder",
+    "sourceRef": "SAMHSA Treatment Improvement Protocol (TIP) Series, No. 63.",
+    "techniqueName": "Sleep Hygiene",
+    "category": "self_care"
+  },
+  {
+    "id": "selfcare-002",
+    "text": "Physical activity is one of the most evidence-based interventions for supporting recovery. Exercise reduces cravings, alleviates depression and anxiety, improves sleep, and rebuilds physical health often damaged by substance use. You don't need a gym — walking for 30 minutes has measurable benefits. Start small and build consistency over intensity. Find movement you enjoy — dancing, swimming, hiking, cycling, yoga. The social aspect of group exercise can also combat isolation, a common relapse risk factor.",
+    "sourceTitle": "NIDA DrugFacts: Treatment Approaches for Drug Addiction",
+    "sourceRef": "https://nida.nih.gov/publications/drugfacts/treatment-approaches-drug-addiction",
+    "techniqueName": "Exercise for Recovery",
+    "category": "self_care"
+  },
+  {
+    "id": "crisis-001",
+    "text": "If you or someone you know is in immediate danger, call 911 (or your local emergency number). If you are having thoughts of suicide or self-harm, contact the 988 Suicide and Crisis Lifeline by calling or texting 988. You can also text HOME to 741741 to reach the Crisis Text Line. SAMHSA's National Helpline at 1-800-662-4357 provides free, confidential treatment referrals 24/7. You are not alone, and help is available right now. These services are free, confidential, and staffed by trained professionals who understand what you're going through.",
+    "sourceTitle": "SAMHSA Emergency Resources",
+    "sourceRef": "https://www.samhsa.gov/find-help",
+    "techniqueName": null,
+    "category": "crisis_resources"
+  },
+  {
+    "id": "crisis-002",
+    "text": "During a mental health or substance use crisis, grounding yourself in the present moment can help reduce overwhelming emotions until help arrives. Try this: place both feet flat on the floor and feel the ground supporting you. Hold something cold (ice cube, cold water). Describe out loud exactly what you see around you in detail. Breathe slowly — in for 4 counts, out for 6 counts. Remind yourself: 'This feeling is temporary. I have survived difficult moments before. I can get through this one.' Then reach out: call a trusted person, text a helpline, or go to a safe place.",
+    "sourceTitle": "Crisis Text Line — Crisis De-escalation Guide",
+    "sourceRef": "https://www.crisistextline.org/topics/self-care/",
+    "techniqueName": "Crisis Grounding",
+    "category": "crisis_resources"
+  },
+  {
+    "id": "mindfulness-003",
+    "text": "Wise Mind is the synthesis of Emotion Mind (decisions driven purely by feelings) and Reasonable Mind (decisions driven purely by logic). In recovery, Emotion Mind might say 'I need to use right now or I can't cope,' while Reasonable Mind might say 'statistically, most people relapse.' Wise Mind integrates both: 'I'm feeling intense distress right now, AND I have tools to cope with it.' Access Wise Mind through breath: inhale, and on the exhale, settle into the knowing that comes from within. Ask yourself: 'What does my inner wisdom say about this moment?'",
+    "sourceTitle": "DBT Skills Training Manual — Mindfulness",
+    "sourceRef": "Linehan, M.M. (2015). DBT Skills Training Manual, 2nd Edition. Guilford Press.",
+    "techniqueName": "Wise Mind",
+    "category": "mindfulness"
+  },
+  {
+    "id": "interpersonal-002",
+    "text": "Building a recovery support network involves deliberately surrounding yourself with people who support your sobriety. This may mean creating new connections in recovery communities, strengthening existing supportive relationships, and setting boundaries with people who undermine your recovery. Identify at least 3 people you can call in a difficult moment. Practice asking for help before you're in crisis — normalize it. Remember: seeking support is not weakness; it's one of the strongest predictors of sustained recovery.",
+    "sourceTitle": "SAMHSA TIP 35: Enhancing Motivation for Change",
+    "sourceRef": "SAMHSA Treatment Improvement Protocol (TIP) Series, No. 35.",
+    "techniqueName": "Recovery Support Network",
+    "category": "interpersonal"
+  },
+  {
+    "id": "dt-006",
+    "text": "The IMPROVE the moment skill offers strategies for tolerating distress until it passes. Imagery: imagine a peaceful place or yourself coping well. Meaning: find meaning in the struggle — what can you learn? Prayer or meditation: connect with something larger than the moment. Relaxation: progressive muscle relaxation, deep breathing. One thing at a time: focus only on this moment, not the whole future. Vacation: take a brief mental vacation — 10 minutes of something soothing. Encouragement: talk to yourself as you would to a friend — 'You can handle this. One moment at a time.'",
+    "sourceTitle": "DBT Skills Training Manual — Distress Tolerance",
+    "sourceRef": "Linehan, M.M. (2015). DBT Skills Training Manual, 2nd Edition. Guilford Press.",
+    "techniqueName": "IMPROVE the Moment",
+    "category": "distress_tolerance"
+  },
+  {
+    "id": "dt-007",
+    "text": "Pros and cons analysis for distress tolerance involves weighing the consequences of acting on an urge versus tolerating it. Create a 2x2 grid: advantages of acting on the urge, disadvantages of acting on the urge, advantages of resisting the urge, disadvantages of resisting the urge. Be honest in every quadrant. Do this exercise BEFORE a crisis so you have it ready. In the moment, review the grid rather than trying to think clearly under distress. Over time, the evidence for resisting grows as you accumulate positive recovery experiences.",
+    "sourceTitle": "DBT Skills Training Manual — Distress Tolerance",
+    "sourceRef": "Linehan, M.M. (2015). DBT Skills Training Manual, 2nd Edition. Guilford Press.",
+    "techniqueName": "Pros and Cons",
+    "category": "distress_tolerance"
+  },
+  {
+    "id": "breathing-003",
+    "text": "Diaphragmatic (belly) breathing is a fundamental calming technique. Place one hand on your chest and one on your abdomen. Breathe in slowly through your nose, directing the breath downward so your belly rises while your chest stays relatively still. Exhale slowly through pursed lips, feeling your belly fall. This engages the diaphragm fully, increases oxygen exchange, and stimulates the vagus nerve. Practice for 5-10 minutes daily. During a craving or distressing moment, even 3-5 diaphragmatic breaths can measurably reduce heart rate and emotional intensity.",
+    "sourceTitle": "SAMHSA TIP 63: Medications for Opioid Use Disorder",
+    "sourceRef": "SAMHSA Treatment Improvement Protocol (TIP) Series, No. 63.",
+    "techniqueName": "Diaphragmatic Breathing",
+    "category": "breathing"
+  },
+  {
+    "id": "er-005",
+    "text": "Name it to tame it: research by Dr. Matthew Lieberman at UCLA shows that putting feelings into words — affect labeling — reduces activity in the amygdala (the brain's alarm system) and increases activity in the prefrontal cortex (the brain's executive control center). Instead of saying 'I feel bad,' try to be specific: 'I feel frustrated because my plans fell through and I'm worried about being alone tonight.' The more specific you are, the more regulation you get. This is not about analyzing or fixing the feeling — it's about naming it accurately.",
+    "sourceTitle": "DBT Skills Training Manual — Emotion Regulation",
+    "sourceRef": "Linehan, M.M. (2015). DBT Skills Training Manual, 2nd Edition. Guilford Press.",
+    "techniqueName": "Affect Labeling",
+    "category": "emotion_regulation"
+  },
+  {
+    "id": "relapse-003",
+    "text": "HALT is an acronym for common relapse risk states: Hungry, Angry, Lonely, Tired. These basic needs, when unmet, lower impulse control and increase vulnerability to cravings. Check in with yourself regularly: Am I Hungry? (eat something nourishing) Am I Angry? (acknowledge the feeling, use a coping skill) Am I Lonely? (reach out to someone — a text counts) Am I Tired? (rest if possible, reduce demands). Many people in recovery report that addressing these simple states prevents the majority of their challenging moments from escalating to crisis.",
+    "sourceTitle": "SMART Recovery — Self-Management and Recovery Training",
+    "sourceRef": "https://www.smartrecovery.org/smart-recovery-toolbox/",
+    "techniqueName": "HALT Check",
+    "category": "relapse_prevention"
+  },
+  {
+    "id": "grounding-003",
+    "text": "Object grounding is a tactile technique for acute distress: pick up any object near you and describe it in exhaustive detail using all your senses. What color is it? What does the texture feel like — smooth, rough, warm, cool? How heavy is it? What does it smell like? Turn it over and notice new details. The purpose is to fully occupy your cognitive resources with present-moment, non-threatening sensory input, interrupting the cycle of distressing thoughts. Keep a grounding object in your pocket (a smooth stone, a fidget tool, a key) for immediate access.",
+    "sourceTitle": "DBT Skills Training Manual — Distress Tolerance",
+    "sourceRef": "Linehan, M.M. (2015). DBT Skills Training Manual, 2nd Edition. Guilford Press.",
+    "techniqueName": "Object Grounding",
+    "category": "grounding"
+  },
+  {
+    "id": "crisis-003",
+    "text": "Creating a safety plan before a crisis occurs is one of the most effective suicide prevention strategies. A safety plan includes: 1) Warning signs that a crisis may be developing (changes in mood, sleep, isolation). 2) Internal coping strategies — things you can do on your own (breathing, grounding, distraction). 3) Social contacts and places that provide distraction. 4) People you can ask for help — names and phone numbers. 5) Professionals and agencies to contact — therapist, crisis line, ER. 6) Making your environment safe — removing or securing means. Review and update your safety plan regularly.",
+    "sourceTitle": "SAMHSA Emergency Resources",
+    "sourceRef": "https://www.samhsa.gov/find-help",
+    "techniqueName": "Safety Planning",
+    "category": "crisis_resources"
+  },
+  {
+    "id": "relapse-004",
+    "text": "Recovery capital refers to the sum total of resources you can draw on to support your recovery: internal (self-efficacy, coping skills, hope), social (supportive relationships, recovery community), physical (stable housing, health, finances), and cultural (values, beliefs, sense of belonging). Building recovery capital is like building a savings account — each positive action makes you more resilient. Focus on one domain at a time. Even small investments compound: one new coping skill, one supportive conversation, one healthy meal. Your recovery capital grows every day you show up for yourself.",
+    "sourceTitle": "SAMHSA TIP 35: Enhancing Motivation for Change",
+    "sourceRef": "SAMHSA Treatment Improvement Protocol (TIP) Series, No. 35.",
+    "techniqueName": "Recovery Capital",
+    "category": "relapse_prevention"
+  }
+]

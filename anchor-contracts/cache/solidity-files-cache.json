@@ -1,0 +1,41 @@
+{
+  "_format": "hh-sol-cache-2",
+  "files": {
+    "/home/fang/Downloads/Bytequest-hackathon/anchor-contracts/contracts/ResourceRegistry.sol": {
+      "lastModificationDate": 1789808068727,
+      "contentHash": "2e9b8db891786922220fc8d16e1de842",
+      "sourceName": "contracts/ResourceRegistry.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.24"
+      ],
+      "artifacts": [
+        "ResourceRegistry"
+      ]
+    }
+  }
+}

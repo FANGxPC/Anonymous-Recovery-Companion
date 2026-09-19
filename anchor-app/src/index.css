@@ -1,0 +1,239 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Premium Light Mode Color Palette - Calming & Clinical */
+  --bg-base: #f8fafc; /* Slate 50 */
+  --bg-surface: #ffffff; /* Pure White */
+  --bg-surface-elevated: #f1f5f9; /* Slate 100 */
+  
+  --text-primary: #0f172a; /* Slate 900 */
+  --text-secondary: #475569; /* Slate 600 */
+  --text-tertiary: #64748b; /* Slate 500 */
+  
+  --accent-primary: #2563eb; /* Blue 600 - Calming */
+  --accent-secondary: #4f46e5; /* Indigo 600 */
+  --accent-success: #059669; /* Emerald 600 - Positive */
+  --accent-warning: #d97706; /* Amber 600 */
+  --accent-danger: #dc2626; /* Red 600 - Alert */
+  
+  --border-color: #e2e8f0; /* Slate 200 */
+  --border-glow: rgba(37, 99, 235, 0.2);
+
+  /* Soft Shadows (No harsh glassmorphism) */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  
+  /* Radii - Soft and welcoming */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  
+  /* Transitions */
+  --transition-fast: 0.15s ease-in-out;
+  --transition-normal: 0.3s ease-in-out;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  line-height: 1.6; /* Increased for readability */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  /* Very subtle gradient to make it feel premium but not distracting */
+  background: linear-gradient(to bottom right, #f8fafc, #f1f5f9);
+  background-attachment: fixed;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Typography - Larger and highly readable */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  line-height: 1.25;
+  margin-bottom: 0.75rem;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+h1 { font-size: 2.25rem; }
+h2 { font-size: 1.75rem; }
+h3 { font-size: 1.5rem; }
+h4 { font-size: 1.25rem; }
+
+p { 
+  margin-bottom: 1.25rem; 
+  font-size: 1.05rem; /* Slightly larger base text */
+}
+
+a { color: var(--accent-primary); text-decoration: none; font-weight: 500; transition: color var(--transition-fast); }
+a:hover { color: var(--accent-secondary); text-decoration: underline; }
+
+/* Layout Utilities */
+.container {
+  width: 100%;
+  max-width: 600px; /* Narrower for easier reading on desktop */
+  margin: 0 auto;
+  padding: 1.5rem;
+  flex: 1;
+}
+
+/* Clean Cards */
+.glass-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.glass-card.interactive:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Forms & Inputs - High contrast, easy to tap */
+.input-group {
+  margin-bottom: 1.5rem;
+}
+
+.label {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.input, .textarea, select {
+  width: 100%;
+  background-color: var(--bg-surface);
+  border: 2px solid var(--border-color); /* Thicker border for better visibility */
+  color: var(--text-primary);
+  border-radius: var(--radius-md);
+  padding: 0.875rem 1rem; /* Larger padding for touch targets */
+  font-family: inherit;
+  font-size: 1.05rem;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.input:focus, .textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px var(--border-glow);
+}
+
+.textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+/* Buttons - Large, friendly, and distinct */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: inherit;
+  font-size: 1.05rem;
+  font-weight: 600;
+  padding: 0.875rem 1.5rem; /* Larger touch targets */
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-align: center;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.btn-primary {
+  background-color: var(--accent-primary);
+  color: white;
+  box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: var(--accent-secondary);
+  box-shadow: 0 6px 10px -1px rgba(37, 99, 235, 0.3);
+  transform: translateY(-1px);
+}
+
+.btn-primary:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.btn-secondary {
+  background-color: var(--bg-surface);
+  color: var(--text-primary);
+  border: 2px solid var(--border-color);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background-color: var(--bg-surface-elevated);
+}
+
+.btn-danger {
+  background-color: #fef2f2;
+  color: var(--accent-danger);
+  border: 2px solid #fca5a5;
+}
+
+.btn-danger:hover:not(:disabled) {
+  background-color: #fee2e2;
+}
+
+/* Crisis Specific Styles - Extremely clear and urgent but not visually overwhelming */
+.crisis-bg {
+  background-color: var(--accent-danger);
+  color: white;
+  border: none;
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+}
+.crisis-bg:hover {
+  background-color: #b91c1c;
+}
+.crisis-pulse {
+  animation: pulse-danger 2.5s infinite;
+}
+@keyframes pulse-danger {
+  0% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.4); }
+  70% { box-shadow: 0 0 0 15px rgba(220, 38, 38, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); }
+}
+
+/* Utility Classes */
+.text-center { text-align: center; }
+.mt-4 { margin-top: 1rem; }
+.mb-2 { margin-bottom: 0.5rem; }
+.mb-4 { margin-bottom: 1rem; }
+.mb-6 { margin-bottom: 1.5rem; }
+.mb-8 { margin-bottom: 2rem; }
+.gap-4 { display: flex; gap: 1rem; }
+.flex-col { display: flex; flex-direction: column; }
+.w-full { width: 100%; }
+.text-sm { font-size: 0.95rem; } /* Avoid going too small */
+.text-muted { color: var(--text-secondary); }
+.text-tertiary { color: var(--text-tertiary); }
+.text-accent { color: var(--accent-primary); }
+.text-danger { color: var(--accent-danger); }
+.flex-between { display: flex; justify-content: space-between; align-items: center; }
+.flex-center { display: flex; justify-content: center; align-items: center; }

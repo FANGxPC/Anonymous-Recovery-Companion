@@ -1,0 +1,156 @@
+[
+  {
+    "id": "dbt-manual",
+    "title": "DBT Skills Training Manual — Distress Tolerance",
+    "fullTitle": "DBT Skills Training Manual, 2nd Edition",
+    "author": "Linehan, M.M.",
+    "year": 2015,
+    "publisher": "Guilford Press",
+    "url": null,
+    "license": "Fair use excerpts for educational purposes",
+    "description": "Evidence-based distress tolerance, mindfulness, emotion regulation, and interpersonal effectiveness skills from Dialectical Behavior Therapy."
+  },
+  {
+    "id": "dbt-er",
+    "title": "DBT Skills Training Manual — Emotion Regulation",
+    "fullTitle": "DBT Skills Training Manual, 2nd Edition",
+    "author": "Linehan, M.M.",
+    "year": 2015,
+    "publisher": "Guilford Press",
+    "url": null,
+    "license": "Fair use excerpts for educational purposes",
+    "description": "Emotion regulation skills including Opposite Action, PLEASE, and building positive experiences."
+  },
+  {
+    "id": "dbt-mind",
+    "title": "DBT Skills Training Manual — Mindfulness",
+    "fullTitle": "DBT Skills Training Manual, 2nd Edition",
+    "author": "Linehan, M.M.",
+    "year": 2015,
+    "publisher": "Guilford Press",
+    "url": null,
+    "license": "Fair use excerpts for educational purposes",
+    "description": "Core mindfulness skills including Wise Mind, non-judgmental observation, and mindful breathing."
+  },
+  {
+    "id": "dbt-ie",
+    "title": "DBT Skills Training Manual — Interpersonal Effectiveness",
+    "fullTitle": "DBT Skills Training Manual, 2nd Edition",
+    "author": "Linehan, M.M.",
+    "year": 2015,
+    "publisher": "Guilford Press",
+    "url": null,
+    "license": "Fair use excerpts for educational purposes",
+    "description": "Interpersonal effectiveness skills including DEAR MAN for assertive communication."
+  },
+  {
+    "id": "samhsa-helpline",
+    "title": "SAMHSA National Helpline Guide",
+    "fullTitle": "SAMHSA's National Helpline",
+    "author": "Substance Abuse and Mental Health Services Administration",
+    "year": 2024,
+    "publisher": "U.S. Department of Health and Human Services",
+    "url": "https://www.samhsa.gov/find-help/national-helpline",
+    "license": "Public domain (U.S. federal government)",
+    "description": "Free, confidential, 24/7 treatment referral and information service for substance use and mental health disorders."
+  },
+  {
+    "id": "988-lifeline",
+    "title": "988 Suicide & Crisis Lifeline",
+    "fullTitle": "988 Suicide & Crisis Lifeline",
+    "author": "Substance Abuse and Mental Health Services Administration",
+    "year": 2024,
+    "publisher": "U.S. Department of Health and Human Services",
+    "url": "https://988lifeline.org/",
+    "license": "Public domain (U.S. federal government)",
+    "description": "24/7, free and confidential support for people in distress, prevention and crisis resources."
+  },
+  {
+    "id": "crisis-text-line",
+    "title": "Crisis Text Line — Support Resources",
+    "fullTitle": "Crisis Text Line",
+    "author": "Crisis Text Line Inc.",
+    "year": 2024,
+    "publisher": "Crisis Text Line",
+    "url": "https://www.crisistextline.org/",
+    "license": "Public educational materials",
+    "description": "Free, 24/7 crisis counseling via text message. Text HOME to 741741."
+  },
+  {
+    "id": "samhsa-tip35",
+    "title": "SAMHSA TIP 35: Enhancing Motivation for Change",
+    "fullTitle": "Treatment Improvement Protocol (TIP) Series, No. 35: Enhancing Motivation for Change in Substance Use Disorder Treatment",
+    "author": "Substance Abuse and Mental Health Services Administration",
+    "year": 2019,
+    "publisher": "U.S. Department of Health and Human Services",
+    "url": "https://store.samhsa.gov/product/tip-35-enhancing-motivation-change-substance-use-disorder-treatment/pep19-02-01-003",
+    "license": "Public domain (U.S. federal government)",
+    "description": "Evidence-based motivational interviewing techniques, stages of change, building self-efficacy, and relapse prevention planning."
+  },
+  {
+    "id": "samhsa-tip63",
+    "title": "SAMHSA TIP 63: Medications for Opioid Use Disorder",
+    "fullTitle": "Treatment Improvement Protocol (TIP) Series, No. 63: Medications for Opioid Use Disorder",
+    "author": "Substance Abuse and Mental Health Services Administration",
+    "year": 2021,
+    "publisher": "U.S. Department of Health and Human Services",
+    "url": "https://store.samhsa.gov/product/tip-63-medications-opioid-use-disorder/pep21-02-01-002",
+    "license": "Public domain (U.S. federal government)",
+    "description": "Comprehensive guide including stress management, breathing techniques, and holistic recovery support."
+  },
+  {
+    "id": "nida-understanding",
+    "title": "NIDA DrugFacts: Understanding Drug Use and Addiction",
+    "fullTitle": "DrugFacts: Understanding Drug Use and Addiction",
+    "author": "National Institute on Drug Abuse",
+    "year": 2024,
+    "publisher": "National Institutes of Health",
+    "url": "https://nida.nih.gov/publications/drugfacts/understanding-drug-use-addiction",
+    "license": "Public domain (U.S. federal government)",
+    "description": "Evidence-based overview of addiction as a brain disorder, not a moral failing."
+  },
+  {
+    "id": "nida-treatment",
+    "title": "NIDA DrugFacts: Treatment Approaches for Drug Addiction",
+    "fullTitle": "DrugFacts: Treatment Approaches for Drug Addiction",
+    "author": "National Institute on Drug Abuse",
+    "year": 2024,
+    "publisher": "National Institutes of Health",
+    "url": "https://nida.nih.gov/publications/drugfacts/treatment-approaches-drug-addiction",
+    "license": "Public domain (U.S. federal government)",
+    "description": "Trigger identification, treatment approaches, and evidence for recovery."
+  },
+  {
+    "id": "smart-recovery",
+    "title": "SMART Recovery — Self-Management and Recovery Training",
+    "fullTitle": "SMART Recovery Toolbox",
+    "author": "SMART Recovery",
+    "year": 2024,
+    "publisher": "SMART Recovery",
+    "url": "https://www.smartrecovery.org/smart-recovery-toolbox/",
+    "license": "Public educational materials",
+    "description": "Self-empowering tools including Cost-Benefit Analysis, DISARM, and HALT for recovery self-management."
+  },
+  {
+    "id": "samhsa-emergency",
+    "title": "SAMHSA Emergency Resources",
+    "fullTitle": "SAMHSA Find Help",
+    "author": "Substance Abuse and Mental Health Services Administration",
+    "year": 2024,
+    "publisher": "U.S. Department of Health and Human Services",
+    "url": "https://www.samhsa.gov/find-help",
+    "license": "Public domain (U.S. federal government)",
+    "description": "Emergency resources, safety planning, and crisis intervention guidance."
+  },
+  {
+    "id": "crisis-deescalation",
+    "title": "Crisis Text Line — Crisis De-escalation Guide",
+    "fullTitle": "Crisis Text Line Self-Care Resources",
+    "author": "Crisis Text Line Inc.",
+    "year": 2024,
+    "publisher": "Crisis Text Line",
+    "url": "https://www.crisistextline.org/topics/self-care/",
+    "license": "Public educational materials",
+    "description": "Crisis de-escalation techniques and grounding exercises for acute distress."
+  }
+]
