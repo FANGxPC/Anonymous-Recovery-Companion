@@ -1,4 +1,4 @@
-import brain from '../brain';
+import { fireCrisisEvent } from '../brain';
 
 // Standard UUIDs for our hackathon ESP32 device
 // If building real hardware, you would register a 16-bit UUID or use a random 128-bit UUID.
@@ -59,8 +59,7 @@ function handleButtonPress(_event: Event) {
   // const data = value?.getUint8(0);
   
   // Trigger the global crisis event, escalating instantly via the Brain module.
-  brain.onCrisis('button' as any); // Type hacking for demo since we didn't export the event emitter properly, wait, brain doesn't emit, it listens! 
-  // Wait, I need a way to emit the crisis from the outside if I didn't expose it. Let's fix that.
+  fireCrisisEvent('button');
 }
 
 function onDisconnected() {

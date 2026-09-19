@@ -12,6 +12,7 @@
     "ingest": "tsx scripts/ingest.ts"
   },
   "dependencies": {
+    "@google/genai": "^2.23.0",
     "@mlc-ai/web-llm": "^0.2.85",
     "@radix-ui/react-label": "^2.1.15",
     "@radix-ui/react-select": "^2.3.7",

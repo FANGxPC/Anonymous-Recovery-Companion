@@ -27,13 +27,25 @@ export default defineConfig({
         theme_color: '#0f172a',
         background_color: '#0f172a',
         display: 'standalone',
+        icons: [
+          {
+            src: '/icon-192x192.png',
+            sizes: '192x192',
+            type: 'image/png'
+          },
+          {
+            src: '/icon-512x512.png',
+            sizes: '512x512',
+            type: 'image/png'
+          }
+        ],
         shortcuts: [
           {
             name: 'Emergency Crisis',
             short_name: 'Crisis',
             description: 'Immediate crisis pathway',
             url: '/crisis',
-            icons: [{ src: '/vite.svg', sizes: '192x192' }] // Placeholder icon
+            icons: [{ src: '/icon-192x192.png', sizes: '192x192' }]
           }
         ]
       }

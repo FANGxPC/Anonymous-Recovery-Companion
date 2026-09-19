@@ -1,17 +1,26 @@
 import React, { useEffect } from 'react';
-import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
+import { Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom';
 import { useVault } from './context/VaultContext';
 import brain from './brain';
+import { BottomNav } from './components/BottomNav';
+import { GeminiChatbot } from './components/GeminiChatbot';
 
 import { Onboarding } from './pages/Onboarding';
 import { Login } from './pages/Login';
 import { Dashboard } from './pages/Dashboard';
 import { CheckIn } from './pages/CheckIn';
 import { Crisis } from './pages/Crisis';
+import { Journal } from './pages/Journal';
+import { Goals } from './pages/Goals';
+import { Triggers } from './pages/Triggers';
+import { Resources } from './pages/Resources';
+import { Settings } from './pages/Settings';
+import { Breathe } from './pages/Breathe';
 
 function App() {
   const { isSetup, isAuthenticated } = useVault();
   const navigate = useNavigate();
+  const location = useLocation();
 
   // Global Crisis Listeners
   useEffect(() => {
@@ -48,7 +57,11 @@ function App() {
     return <div className="flex-1 flex items-center justify-center min-h-screen text-muted-foreground">Loading secure vault...</div>;
   }
 
+  // Do not show the chat button on onboarding/login or crisis
+  const showChatbot = isAuthenticated && location.pathname !== '/crisis' && location.pathname !== '/';
+
   return (
+    <>
     <Routes>
       <Route 
         path="/" 
@@ -72,8 +85,36 @@ function App() {
         path="/crisis" 
         element={<Crisis />} 
       />
+      <Route 
+        path="/journal" 
+        element={isAuthenticated ? <Journal /> : <Navigate to="/" />} 
+      />
+      <Route 
+        path="/goals" 
+        element={isAuthenticated ? <Goals /> : <Navigate to="/" />} 
+      />
+      <Route 
+        path="/triggers" 
+        element={isAuthenticated ? <Triggers /> : <Navigate to="/" />} 
+      />
+      <Route 
+        path="/resources" 
+        element={isAuthenticated ? <Resources /> : <Navigate to="/" />} 
+      />
+      <Route 
+        path="/settings" 
+        element={isAuthenticated ? <Settings /> : <Navigate to="/" />} 
+      />
+      <Route 
+        path="/breathe" 
+        element={<Breathe />} 
+      />
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
+    
+    <BottomNav />
+    {showChatbot && <GeminiChatbot />}
+    </>
   );
 }
 
