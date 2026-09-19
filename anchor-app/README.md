@@ -1,32 +1,20 @@
-# React + TypeScript + Vite
+# ⚓ ANCHOR App — Frontend PWA
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+This directory contains the React 19 + TypeScript + Vite Progressive Web App for **ANCHOR** (Anonymous Recovery Companion).
 
-Currently, two official plugins are available:
+## 🚀 Key Modules
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- `src/vault/`: Local WebCrypto (AES-GCM) + Argon2id WASM key derivation + IndexedDB local storage engine.
+- `src/brain/`: Local RAG retriever, `@xenova/transformers` vector index, crisis classifier, and evaluation interface.
+- `src/hardware/`: Web Bluetooth API manager for pairing with the ESP32 physical Anchor Button.
+- `src/blockchain/`: Ethers.js integration for reading on-chain resource verification status from `ResourceRegistry.sol`.
+- `src/pages/`: React UI components (Dashboard, CheckIn, Crisis, Journal, Goals, Triggers, Resources, Settings, Breathe).
 
-## React Compiler
+## 🛠️ Scripts
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- `npm run dev`: Start Vite development server.
+- `npm run build`: Type-check and build production PWA bundle.
+- `npm run eval`: Run safety guardrail, crisis recall, and citation evaluation harness.
+- `npm run ingest`: Process and embed RAG corpus into vector store.
 
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
-```
-
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+For complete documentation on the ANCHOR project, please see the [Root README.md](../README.md).
