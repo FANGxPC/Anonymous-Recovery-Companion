@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import { Home, Book, PlusCircle, Wind, AlertCircle } from 'lucide-react';
+import { Activity, Plus, Sparkles, AlertCircle, Book } from 'lucide-react';
 import { useVault } from '../context/VaultContext';
 
 export function BottomNav() {
@@ -8,20 +8,18 @@ export function BottomNav() {
   const location = useLocation();
 
   if (!isAuthenticated) return null;
-
-  // Don't show bottom nav on the crisis page or onboarding/login
   if (location.pathname === '/crisis' || location.pathname === '/') return null;
 
   const links = [
-    { to: '/dashboard', icon: <Home className="w-5 h-5" />, label: 'Home' },
+    { to: '/dashboard', icon: <Activity className="w-5 h-5" />, label: 'Overview' },
     { to: '/journal', icon: <Book className="w-5 h-5" />, label: 'Journal' },
     { 
       to: '/checkin', 
-      icon: <PlusCircle className="w-6 h-6" />, 
+      icon: <Plus className="w-6 h-6" />, 
       label: 'Log', 
       primary: true 
     },
-    { to: '/breathe', icon: <Wind className="w-5 h-5" />, label: 'Breathe' },
+    { to: '/breathe', icon: <Sparkles className="w-5 h-5" />, label: 'Breathe' },
     { 
       to: '/crisis', 
       icon: <AlertCircle className="w-5 h-5" />, 
@@ -31,27 +29,40 @@ export function BottomNav() {
   ];
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 border-t bg-background/95 backdrop-blur z-50 px-2 pb-safe pt-2 sm:hidden">
+    <div 
+      className="fixed bottom-0 left-0 right-0 border-t z-50 px-2 pb-safe pt-2 sm:hidden"
+      style={{ background: 'rgba(247,248,243,0.95)', backdropFilter: 'blur(12px)', borderColor: 'var(--line)' }}
+    >
       <div className="flex items-center justify-between max-w-md mx-auto">
         {links.map((link) => (
           <NavLink
             key={link.to}
             to={link.to}
             className={({ isActive }) => `
-              flex flex-col items-center justify-center w-full py-1 gap-1
+              flex flex-col items-center justify-center w-full py-1 gap-1 transition-colors
               ${link.primary 
-                ? 'text-primary transform -translate-y-2' 
+                ? 'transform -translate-y-2' 
                 : link.danger
-                  ? 'text-destructive opacity-80 hover:opacity-100'
-                  : isActive
-                    ? 'text-primary'
-                    : 'text-muted-foreground hover:text-foreground'
+                  ? 'opacity-80 hover:opacity-100'
+                  : ''
               }
             `}
+            style={({ isActive }) => ({
+              color: link.primary 
+                ? undefined
+                : link.danger 
+                  ? '#b2614f'
+                  : isActive 
+                    ? 'var(--green)' 
+                    : '#758078'
+            })}
           >
             {link.primary ? (
-              <div className="bg-primary text-primary-foreground p-3 rounded-full shadow-lg">
-                {link.icon}
+              <div 
+                className="p-3 rounded-xl shadow-lg"
+                style={{ background: 'var(--green)', color: '#fff', borderRadius: '11px 11px 11px 3px', transform: 'rotate(-4deg)' }}
+              >
+                <span style={{ display: 'block', transform: 'rotate(4deg)' }}>{link.icon}</span>
               </div>
             ) : (
               link.icon

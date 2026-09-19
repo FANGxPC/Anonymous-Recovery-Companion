@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Target, Activity, Zap, Layers } from 'lucide-react';
+import { Activity } from 'lucide-react';
 import { useVault } from '../context/VaultContext';
 import { getEntries } from '../vault/db';
 import type { CheckInEntry } from '../vault/db';
-
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
 
 export function Triggers() {
   const { cryptoKey } = useVault();
@@ -21,96 +18,73 @@ export function Triggers() {
     loadData();
   }, [cryptoKey]);
 
-  // Aggregate triggers
   const triggersWithData = entries.filter(e => e.triggerCategory);
-  
   const triggerCounts = triggersWithData.reduce((acc, entry) => {
     const trigger = entry.triggerCategory as string;
     acc[trigger] = (acc[trigger] || 0) + 1;
     return acc;
   }, {} as Record<string, number>);
-
-  const topTriggers = Object.entries(triggerCounts)
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 5);
-
+  const topTriggers = Object.entries(triggerCounts).sort((a, b) => b[1] - a[1]).slice(0, 5);
   const entriesWithCopings = entries.filter(e => e.triggerCategory && e.ragResponse);
 
   return (
-    <div className="flex-1 w-full max-w-3xl mx-auto p-4 md:p-8 space-y-8 pb-24">
-      <header className="flex items-center justify-between pb-4 border-b">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight flex items-center gap-2">
-            <Zap className="w-8 h-8 text-amber-500" />
-            Triggers & Coping
-          </h1>
-          <p className="text-muted-foreground mt-1">Understand your patterns to build resilience.</p>
-        </div>
+    <div className="flex-1 w-full max-w-[900px] mx-auto px-4 md:px-16 pb-24">
+      <header className="h-[86px] flex items-center border-b" style={{ borderColor: 'var(--line)' }}>
+        <span className="eyebrow">My space <span className="mx-2" style={{ color: '#c2cac2' }}>/</span> Triggers</span>
       </header>
 
-      {topTriggers.length === 0 ? (
-        <Card className="py-12 border-dashed bg-transparent shadow-none text-center">
-          <CardContent className="flex flex-col items-center text-muted-foreground">
-            <Activity className="w-8 h-8 mb-4 opacity-30" />
-            <p>Log a check-in with a trigger to see your patterns here.</p>
-          </CardContent>
-        </Card>
-      ) : (
-        <div className="space-y-6">
-          <Card>
-            <CardHeader>
-              <CardTitle>Top Triggers</CardTitle>
-              <CardDescription>Most frequent situations preceding a check-in.</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                {topTriggers.map(([trigger, count], index) => (
-                  <div key={trigger} className="flex items-center gap-4">
-                    <div className="w-24 text-sm font-medium capitalize truncate">
-                      {trigger}
-                    </div>
-                    <div className="flex-1 h-3 bg-muted rounded-full overflow-hidden">
-                      <motion.div 
-                        initial={{ width: 0 }}
-                        animate={{ width: `${(count / topTriggers[0][1]) * 100}%` }}
-                        transition={{ delay: index * 0.1, duration: 0.5 }}
-                        className="h-full bg-amber-500 rounded-full"
-                      />
-                    </div>
-                    <div className="w-8 text-right text-sm text-muted-foreground font-semibold">
-                      {count}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
+      <div className="py-10">
+        <p className="eyebrow mb-2">YOUR PATTERNS</p>
+        <h1 className="serif-heading text-[clamp(36px,5vw,56px)]">
+          Triggers & <em>coping.</em>
+        </h1>
+        <p className="mt-3 text-sm" style={{ color: '#859088' }}>Understand your patterns to build resilience.</p>
+      </div>
 
-          <div>
-            <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
-              <Layers className="w-5 h-5 text-primary" />
-              Effective Coping Strategies
-            </h3>
+      {topTriggers.length === 0 ? (
+        <div className="text-center py-16 rounded-sm border" style={{ background: 'var(--paper)', borderColor: 'var(--line)' }}>
+          <Activity size={24} className="mx-auto mb-4 opacity-30" style={{ color: '#8b958d' }} />
+          <p className="text-sm" style={{ color: '#8b958d' }}>Log a check-in with a trigger to see your patterns here.</p>
+        </div>
+      ) : (
+        <div className="space-y-10">
+          <div className="p-6 rounded-sm border" style={{ background: 'var(--paper)', borderColor: 'var(--line)' }}>
+            <p className="eyebrow mb-1">FREQUENCY</p>
+            <h3 className="serif-heading text-[20px] font-semibold mb-6" style={{ letterSpacing: '-0.03em' }}>Top triggers</h3>
             <div className="space-y-4">
-              {entriesWithCopings.slice(0, 5).map(entry => (
-                <Card key={entry.id} className="bg-primary/5 border-primary/20">
-                  <CardHeader className="pb-2">
-                    <div className="flex items-center gap-2">
-                      <Badge variant="outline" className="border-amber-500/50 text-amber-600 bg-amber-500/10">
-                        Trigger: <span className="capitalize ml-1 font-semibold">{entry.triggerCategory}</span>
-                      </Badge>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-sm font-medium leading-relaxed">{entry.ragResponse?.text}</p>
-                    <div className="text-xs text-muted-foreground mt-3 pt-3 border-t border-primary/10">
-                      Cited Source: {entry.ragResponse?.source}
-                    </div>
-                  </CardContent>
-                </Card>
+              {topTriggers.map(([trigger, count], index) => (
+                <div key={trigger} className="flex items-center gap-4">
+                  <div className="w-24 text-xs font-medium capitalize truncate">{trigger}</div>
+                  <div className="flex-1 h-2.5 rounded-full overflow-hidden" style={{ background: '#e5f0e2' }}>
+                    <motion.div
+                      initial={{ width: 0 }}
+                      animate={{ width: `${(count / topTriggers[0][1]) * 100}%` }}
+                      transition={{ delay: index * 0.1, duration: 0.5 }}
+                      className="h-full rounded-full"
+                      style={{ background: 'var(--green)' }}
+                    />
+                  </div>
+                  <div className="w-8 text-right text-xs font-semibold" style={{ color: '#8b958d' }}>{count}</div>
+                </div>
               ))}
             </div>
           </div>
+
+          {entriesWithCopings.length > 0 && (
+            <div>
+              <p className="eyebrow mb-1">WHAT HELPED</p>
+              <h3 className="serif-heading text-[20px] font-semibold mb-5" style={{ letterSpacing: '-0.03em' }}>Effective coping strategies</h3>
+              <div className="space-y-3">
+                {entriesWithCopings.slice(0, 5).map(entry => (
+                  <div key={entry.id} className="p-5 rounded-sm border" style={{ background: '#e5f0e2', borderColor: '#d3e4d2' }}>
+                    <span className="eyebrow" style={{ color: '#a46836' }}>Trigger: {entry.triggerCategory}</span>
+                    <p className="mt-2 text-sm font-medium leading-relaxed" style={{ color: 'var(--ink)' }}>{entry.ragResponse?.text}</p>
+                    <p className="mt-2 text-[10px]" style={{ color: '#8b978d' }}>Source: {entry.ragResponse?.source}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       )}
     </div>

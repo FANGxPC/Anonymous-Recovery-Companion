@@ -32,7 +32,7 @@ export function SmartwatchSimulator() {
     if (bpm > 120) {
       panicTimer = setTimeout(() => {
         console.warn('Smartwatch Simulator: Sustained high heart rate detected! Triggering crisis...');
-        fireCrisisEvent('smartwatch_hr_spike');
+        fireCrisisEvent('manual');
       }, 3000); // Trigger after 3 seconds of high BPM
     }
     

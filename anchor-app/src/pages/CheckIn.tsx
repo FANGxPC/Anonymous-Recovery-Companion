@@ -1,190 +1,142 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, Loader2, Sparkles, CheckCircle2 } from 'lucide-react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { X, ArrowRight } from 'lucide-react';
 import { useVault } from '../context/VaultContext';
 import { saveEntry } from '../vault/db';
-import brain from '../brain';
-import type { SupportResponse, CheckInData, TriggerCategory } from '../brain/contracts';
-import { SupportResponseCard } from '../components/SupportResponseCard';
-
-import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Label } from '@/components/ui/label';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Textarea } from '@/components/ui/textarea';
-
-const MOODS = ['great', 'good', 'okay', 'low', 'crisis'] as const;
 
 export function CheckIn() {
   const navigate = useNavigate();
   const { cryptoKey } = useVault();
-  
-  const [mood, setMood] = useState<CheckInData['mood']>('okay');
-  const [trigger, setTrigger] = useState<string>('other');
+  const [mood, setMood] = useState<string | null>(null);
+  const [trigger, setTrigger] = useState<string>('');
   const [note, setNote] = useState('');
-  
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [response, setResponse] = useState<SupportResponse | null>(null);
+  const [isSaving, setIsSaving] = useState(false);
 
-  useEffect(() => {
-    brain.init('sealed').catch(console.error);
-  }, []);
+  const moods = [
+    { label: 'Great', icon: '☀' },
+    { label: 'Good', icon: '◒' },
+    { label: 'Okay', icon: '○' },
+    { label: 'Low', icon: '◡' },
+    { label: 'Crisis', icon: '△' }
+  ];
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!cryptoKey) return;
+  const triggers = [
+    'None', 'Stress or overwhelm', 'Social pressure', 
+    'Physical discomfort', 'Conflict', 'Financial worry', 
+    'Boredom or emptiness'
+  ];
+
+  const handleSave = async () => {
+    if (!mood || !cryptoKey) return;
+    setIsSaving(true);
     
-    setIsSubmitting(true);
-    setResponse(null);
-
-    const checkInData: CheckInData = {
-      mood,
-      triggerCategory: (trigger as TriggerCategory) || 'other',
-      note,
-      timestamp: Date.now()
-    };
-
     try {
-      const support = await brain.getSupport(checkInData);
-      
-      if (support.crisis) {
-        navigate('/crisis');
-        return;
-      }
-      
-      // Update checkInData to include the response, matching the new type definition
-      const savedData = { ...checkInData, ragResponse: support };
-      await saveEntry({ id: crypto.randomUUID(), ...savedData }, cryptoKey);
-      
-      setResponse(support);
+      await saveEntry({
+        id: crypto.randomUUID(),
+        timestamp: Date.now(),
+        mood: mood.toLowerCase(),
+        note: note.trim() || undefined,
+        triggerCategory: trigger !== 'None' ? trigger : undefined,
+      }, cryptoKey);
+      navigate('/dashboard');
     } catch (err) {
-      console.error('Check-in failed:', err);
+      console.error('Failed to save entry:', err);
+      alert('Failed to save your check-in securely.');
     } finally {
-      setIsSubmitting(false);
+      setIsSaving(false);
     }
   };
 
   return (
-    <div className="flex-1 w-full max-w-2xl mx-auto p-4 md:p-8">
-      <div className="flex items-center gap-4 mb-8">
-        <Button variant="ghost" size="icon" onClick={() => navigate('/dashboard')} className="shrink-0">
-          <ArrowLeft className="w-5 h-5" />
-        </Button>
-        <div>
-          <h1 className="text-2xl font-bold tracking-tight">Daily Log</h1>
-          <p className="text-sm text-muted-foreground">Securely document your feelings and get grounded feedback.</p>
+    <div className="flex flex-col min-h-screen" style={{ background: 'var(--cream)' }}>
+      <header className="p-6">
+        <button onClick={() => navigate(-1)} className="inline-flex items-center gap-2 text-xs" style={{ color: '#728279' }}>
+          <X size={16} /> Close
+        </button>
+      </header>
+
+      <main className="flex-1 w-full max-w-[650px] mx-auto px-6 pb-24">
+        
+        <div className="mb-12">
+          <p className="eyebrow mb-3">A MOMENT FOR YOU</p>
+          <h2 className="serif-heading text-[clamp(42px,5vw,56px)]">
+            How are you feeling<br /><em>today?</em>
+          </h2>
+          <p className="mt-4 text-sm" style={{ color: '#86928a' }}>
+            There is no right answer. Just notice what is true right now.
+          </p>
         </div>
-      </div>
 
-      <AnimatePresence mode="wait">
-        {!response ? (
-          <motion.div 
-            key="form"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.98 }}
-          >
-            <Card className="shadow-sm">
-              <CardContent className="pt-6">
-                <form onSubmit={handleSubmit} className="space-y-8">
-                  {/* Mood Selector */}
-                  <div className="space-y-4">
-                    <Label className="text-base font-semibold">How are you feeling today?</Label>
-                    <div className="flex flex-wrap gap-3">
-                      {MOODS.map((m) => (
-                        <Button
-                          key={m}
-                          type="button"
-                          variant={mood === m ? 'default' : 'outline'}
-                          className={`capitalize flex-1 min-w-[80px] ${mood === m ? 'shadow-sm' : ''}`}
-                          onClick={() => setMood(m)}
-                        >
-                          {m}
-                        </Button>
-                      ))}
-                    </div>
-                  </div>
+        <div className="space-y-10">
+          
+          <div className="grid grid-cols-5 gap-2.5">
+            {moods.map(m => {
+              const isSelected = mood === m.label;
+              return (
+                <button 
+                  key={m.label}
+                  onClick={() => setMood(m.label)}
+                  className="flex flex-col items-center justify-center gap-2 py-4 rounded-md border transition-all"
+                  style={{
+                    background: isSelected ? '#e5f0e2' : '#fff',
+                    borderColor: isSelected ? '#bcd8bc' : 'var(--line)',
+                    color: isSelected ? '#52745b' : '#76837a',
+                  }}
+                >
+                  <span className="text-[23px] mb-1" style={{ color: isSelected ? 'inherit' : '#e39a78' }}>{m.icon}</span>
+                  <span className="text-[11px] font-medium">{m.label}</span>
+                </button>
+              );
+            })}
+          </div>
 
-                  {/* Trigger Selector */}
-                  <div className="space-y-4">
-                    <Label htmlFor="trigger" className="text-base font-semibold">Are you dealing with any specific challenges? <span className="text-muted-foreground font-normal">(Optional)</span></Label>
-                    <Select value={trigger} onValueChange={setTrigger}>
-                      <SelectTrigger id="trigger" className="w-full">
-                        <SelectValue placeholder="Select a challenge" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="other">None / Other</SelectItem>
-                        <SelectItem value="social">Social Pressure</SelectItem>
-                        <SelectItem value="stress">Stress or Overwhelm</SelectItem>
-                        <SelectItem value="craving">Cravings or Urges</SelectItem>
-                        <SelectItem value="emotional">Emotional Distress</SelectItem>
-                        <SelectItem value="environmental">Difficult Places or People</SelectItem>
-                        <SelectItem value="physical">Pain or Fatigue</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-
-                  {/* Journal Note */}
-                  <div className="space-y-4">
-                    <Label htmlFor="note" className="text-base font-semibold">Private Journal <span className="text-muted-foreground font-normal">(Optional)</span></Label>
-                    <Textarea 
-                      id="note"
-                      placeholder="Write anything you like. This stays completely private on this device."
-                      className="min-h-[150px] resize-y text-base p-4"
-                      value={note}
-                      onChange={(e: any) => setNote(e.target.value)}
-                    />
-                  </div>
-
-                  <Button 
-                    type="submit" 
-                    className="w-full h-12 text-base font-semibold"
-                    disabled={isSubmitting}
-                  >
-                    {isSubmitting ? (
-                      <span className="flex items-center gap-2">
-                        <Loader2 className="w-5 h-5 animate-spin" />
-                        Generating your action plan...
-                      </span>
-                    ) : (
-                      <span className="flex items-center gap-2">
-                        <Sparkles className="w-5 h-5" />
-                        Save & Get Support
-                      </span>
-                    )}
-                  </Button>
-                </form>
-              </CardContent>
-            </Card>
-          </motion.div>
-        ) : (
-          <motion.div 
-            key="response"
-            initial={{ opacity: 0, scale: 0.98 }}
-            animate={{ opacity: 1, scale: 1 }}
-          >
-            <div className="mb-6 flex items-center gap-3 text-emerald-600 bg-emerald-50 border border-emerald-100 p-4 rounded-lg">
-              <CheckCircle2 className="w-6 h-6 shrink-0" />
-              <div>
-                <p className="font-semibold">Log Saved Securely</p>
-                <p className="text-sm opacity-90">Your entry is encrypted and stored locally.</p>
-              </div>
+          <div>
+            <label className="block mb-3 text-xs font-semibold" style={{ color: '#51675a' }}>
+              What feels most true right now? <span className="font-normal" style={{ color: '#9ba59d' }}>optional</span>
+            </label>
+            <div className="flex flex-wrap gap-2">
+              {triggers.map(t => (
+                <button
+                  key={t}
+                  onClick={() => setTrigger(t)}
+                  className="px-4 py-2 text-[11px] rounded-full border transition-colors"
+                  style={{
+                    background: trigger === t ? 'var(--green)' : '#fff',
+                    color: trigger === t ? '#fff' : '#6f7972',
+                    borderColor: trigger === t ? 'var(--green)' : 'var(--line)'
+                  }}
+                >
+                  {t}
+                </button>
+              ))}
             </div>
+          </div>
 
-            <h2 className="text-lg font-semibold mb-4 text-primary">Your Action Plan</h2>
-            <SupportResponseCard response={response} />
-            
-            <Button 
-              className="w-full mt-8 h-12 text-base" 
-              variant="outline"
-              onClick={() => navigate('/dashboard')}
-            >
-              Return to Dashboard
-            </Button>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          <div>
+            <label htmlFor="note" className="block mb-2 text-xs font-semibold" style={{ color: '#51675a' }}>
+              A private note <span className="font-normal" style={{ color: '#9ba59d' }}>optional</span>
+            </label>
+            <textarea 
+              id="note"
+              value={note}
+              onChange={(e) => setNote(e.target.value)}
+              placeholder="What is on your mind? This stays on your device." 
+              className="w-full min-h-[150px] p-4 text-[13px] border rounded-md outline-none transition-colors focus:border-[#8fb392]"
+              style={{ background: '#fffefa', borderColor: 'var(--line)', color: 'var(--ink)' }}
+            />
+          </div>
+
+          <button 
+            onClick={handleSave}
+            disabled={!mood || isSaving}
+            className="w-full flex items-center justify-between p-4 text-[13px] font-semibold text-white rounded-md disabled:opacity-50 transition-transform active:scale-[0.98]"
+            style={{ background: 'var(--green)' }}
+          >
+            {isSaving ? 'Saving securely...' : 'Save & get support'}
+            <ArrowRight size={17} />
+          </button>
+        </div>
+      </main>
     </div>
   );
 }

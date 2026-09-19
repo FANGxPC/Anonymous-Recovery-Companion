@@ -1,43 +1,53 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 @plugin "tailwindcss-animate";
 
 @theme {
-  --font-sans: 'Inter', sans-serif;
+  --font-sans: 'Manrope', sans-serif;
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-mono: 'DM Mono', monospace;
 }
 
 @layer base {
   :root {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    --background: 72 18% 96%;
+    --foreground: 162 18% 17%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 48 50% 99%;
+    --card-foreground: 162 18% 17%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 48 50% 99%;
+    --popover-foreground: 162 18% 17%;
 
-    /* Premium Teal */
-    --primary: 173 80% 40%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 150 24% 37%;
+    --primary-foreground: 48 50% 99%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 100 14% 90%;
+    --secondary-foreground: 162 18% 17%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 100 14% 90%;
+    --muted-foreground: 144 5% 49%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 100 14% 90%;
+    --accent-foreground: 162 18% 17%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 15 66% 64%;
+    --destructive-foreground: 48 50% 99%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 173 80% 40%;
+    --border: 108 14% 88%;
+    --input: 108 14% 88%;
+    --ring: 150 24% 37%;
 
-    --radius: 0.75rem;
+    --radius: 0.25rem;
+
+    /* Extended palette */
+    --ink: #253733;
+    --sage: #dfeee1;
+    --cream: #f7f8f3;
+    --paper: #fffefa;
+    --green: #48745d;
+    --coral: #e48267;
+    --line: #dfe7df;
   }
 }
 
@@ -46,10 +56,12 @@
     border-color: hsl(var(--border));
   }
   body {
-    background-color: hsl(var(--background));
-    color: hsl(var(--foreground));
+    background-color: var(--cream);
+    color: var(--ink);
     font-feature-settings: "rlig" 1, "calt" 1;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Manrope', sans-serif;
+    background-image: radial-gradient(#c7d4c8 0.6px, transparent 0.6px);
+    background-size: 18px 18px;
   }
 }
 
@@ -58,3 +70,31 @@ html, body, #root {
   display: flex;
   flex-direction: column;
 }
+
+/* ─── Design System Utilities ────────────────────────── */
+
+.eyebrow {
+  color: #93a098;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.serif-heading {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  line-height: 0.92;
+}
+
+.serif-heading em {
+  color: var(--green);
+  font-style: italic;
+  font-weight: 500;
+}
+
+/* Card tones from reference */
+.card-sun { background: #fff9ed !important; border-color: #f1e6cc !important; }
+.card-lavender { background: #f8f6fb !important; border-color: #e7e2ef !important; }
+.card-mint { background: #f3faf1 !important; border-color: #dcebd9 !important; }

@@ -1,11 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageSquare, X, Send, Bot, User, AlertCircle } from 'lucide-react';
+import { X, Send, Sparkles, ChevronRight, AlertCircle } from 'lucide-react';
 import { GoogleGenAI } from '@google/genai';
-
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 
 interface Message {
   role: 'user' | 'model' | 'system';
@@ -61,7 +57,7 @@ export function GeminiChatbot() {
       });
 
       if (response.text) {
-        setMessages(prev => [...prev, { role: 'model', content: response.text }]);
+        setMessages(prev => [...prev, { role: 'model', content: response.text } as Message]);
       }
     } catch (error) {
       console.error('Gemini API Error:', error);
@@ -75,9 +71,7 @@ export function GeminiChatbot() {
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
-      handleSend();
-    }
+    if (e.key === 'Enter') handleSend();
   };
 
   return (
@@ -85,97 +79,115 @@ export function GeminiChatbot() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: 20, scale: 0.95 }}
+            initial={{ opacity: 0, y: 10, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 20, scale: 0.95 }}
+            exit={{ opacity: 0, y: 10, scale: 0.98 }}
             transition={{ duration: 0.2 }}
-            className="fixed bottom-20 right-4 sm:bottom-24 sm:right-8 z-50 w-[350px] max-w-[calc(100vw-2rem)] flex flex-col shadow-2xl"
+            className="fixed bottom-24 right-4 sm:right-8 z-50 w-[360px] max-w-[calc(100vw-2rem)] flex flex-col shadow-2xl rounded-md border overflow-hidden"
+            style={{ background: 'var(--cream)', borderColor: 'var(--line)', height: '520px' }}
           >
-            <Card className="flex flex-col h-[500px] border-primary/20 bg-background/95 backdrop-blur-md">
-              <CardHeader className="p-4 border-b bg-primary/5 flex flex-row items-center justify-between pb-3">
-                <div className="flex items-center gap-2">
-                  <div className="bg-primary/20 p-2 rounded-full">
-                    <Bot className="w-5 h-5 text-primary" />
-                  </div>
-                  <div>
-                    <CardTitle className="text-base font-bold">Anchor Chat</CardTitle>
-                    <p className="text-xs text-muted-foreground">AI Companion</p>
-                  </div>
+            <div className="flex items-center justify-between p-4 border-b" style={{ background: 'var(--paper)', borderColor: 'var(--line)' }}>
+              <div className="flex items-center gap-3">
+                <div className="grid place-items-center w-8 h-8 rounded-full" style={{ color: '#fff', background: 'var(--green)' }}>
+                  <Sparkles size={16} />
                 </div>
-                <Button variant="ghost" size="icon" className="h-8 w-8 -mr-2 text-muted-foreground hover:text-foreground" onClick={() => setIsOpen(false)}>
-                  <X className="w-5 h-5" />
-                </Button>
-              </CardHeader>
-              
-              <CardContent className="flex-1 p-4 overflow-y-auto space-y-4 flex flex-col">
-                {messages.map((msg, idx) => (
-                  <div key={idx} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                    <div className={`
-                      max-w-[85%] rounded-2xl px-4 py-2 text-sm
-                      ${msg.role === 'user' ? 'bg-primary text-primary-foreground rounded-tr-sm' : 
-                        msg.role === 'system' ? 'bg-destructive/10 text-destructive border border-destructive/20 text-xs italic' : 
-                        'bg-muted/60 text-foreground rounded-tl-sm'}
-                    `}>
-                      {msg.role === 'model' && (
-                        <div className="flex items-center gap-1.5 mb-1 text-xs font-semibold text-primary/80">
-                          <Bot className="w-3 h-3" /> Anchor
-                        </div>
-                      )}
-                      {msg.role === 'system' && (
-                        <div className="flex items-center gap-1.5 mb-1 font-semibold">
-                          <AlertCircle className="w-3 h-3" /> System
-                        </div>
-                      )}
-                      <p className="whitespace-pre-wrap leading-relaxed">{msg.content}</p>
-                    </div>
-                  </div>
-                ))}
-                
-                {isLoading && (
-                  <div className="flex justify-start">
-                    <div className="bg-muted/60 text-foreground rounded-2xl rounded-tl-sm px-4 py-3 text-sm flex items-center gap-1.5">
-                      <span className="w-2 h-2 bg-primary/50 rounded-full animate-bounce" />
-                      <span className="w-2 h-2 bg-primary/50 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }} />
-                      <span className="w-2 h-2 bg-primary/50 rounded-full animate-bounce" style={{ animationDelay: '0.4s' }} />
-                    </div>
-                  </div>
-                )}
-                <div ref={messagesEndRef} />
-              </CardContent>
-              
-              <div className="p-3 border-t bg-background">
-                <div className="flex items-center gap-2 relative">
-                  <Input 
-                    value={input}
-                    onChange={(e) => setInput(e.target.value)}
-                    onKeyDown={handleKeyDown}
-                    placeholder="Type a message..."
-                    className="pr-10 rounded-full border-primary/20 focus-visible:ring-primary/30"
-                    disabled={isLoading}
-                  />
-                  <Button 
-                    size="icon" 
-                    onClick={handleSend}
-                    disabled={!input.trim() || isLoading}
-                    className="absolute right-1 w-8 h-8 rounded-full"
-                  >
-                    <Send className="w-4 h-4" />
-                  </Button>
+                <div>
+                  <h3 className="font-bold text-[15px]" style={{ color: 'var(--ink)' }}>Anchor companion</h3>
+                  <p className="text-[11px]" style={{ color: 'var(--muted-foreground)' }}>AI Support</p>
                 </div>
               </div>
-            </Card>
+              <button onClick={() => setIsOpen(false)} className="text-[#8b958d] hover:text-[var(--ink)] transition-colors">
+                <X size={18} />
+              </button>
+            </div>
+            
+            <div className="flex-1 p-5 overflow-y-auto space-y-4 flex flex-col" style={{ background: '#fcfdfa' }}>
+              {messages.map((msg, idx) => (
+                <div key={idx} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+                  <div className={`
+                    max-w-[85%] rounded-md px-4 py-3 text-[13px] leading-relaxed shadow-sm
+                    ${msg.role === 'user' 
+                      ? 'rounded-tr-none' 
+                      : msg.role === 'system' 
+                        ? 'bg-[#fff5f0] text-[#b2614f] border border-[#f0d5cb] text-xs italic' 
+                        : 'rounded-tl-none border'}
+                  `}
+                  style={
+                    msg.role === 'user' ? { background: 'var(--green)', color: '#fff' }
+                    : msg.role === 'model' ? { background: '#fff', borderColor: 'var(--line)', color: 'var(--ink)' }
+                    : {}
+                  }
+                  >
+                    {msg.role === 'model' && (
+                      <div className="flex items-center gap-1.5 mb-2 text-[10px] font-bold uppercase tracking-widest" style={{ color: 'var(--green)' }}>
+                        <Sparkles size={12} /> Anchor
+                      </div>
+                    )}
+                    {msg.role === 'system' && (
+                      <div className="flex items-center gap-1.5 mb-1 font-semibold">
+                        <AlertCircle size={12} /> System
+                      </div>
+                    )}
+                    <p className="whitespace-pre-wrap">{msg.content}</p>
+                  </div>
+                </div>
+              ))}
+              
+              {isLoading && (
+                <div className="flex justify-start">
+                  <div className="rounded-md rounded-tl-none px-4 py-4 text-sm flex items-center gap-1.5 shadow-sm border" style={{ background: '#fff', borderColor: 'var(--line)' }}>
+                    <span className="w-1.5 h-1.5 rounded-full animate-bounce" style={{ background: 'var(--green)' }} />
+                    <span className="w-1.5 h-1.5 rounded-full animate-bounce" style={{ background: 'var(--green)', animationDelay: '0.2s' }} />
+                    <span className="w-1.5 h-1.5 rounded-full animate-bounce" style={{ background: 'var(--green)', animationDelay: '0.4s' }} />
+                  </div>
+                </div>
+              )}
+              <div ref={messagesEndRef} />
+            </div>
+            
+            <div className="p-4 border-t" style={{ background: 'var(--paper)', borderColor: 'var(--line)' }}>
+              <div className="flex items-center gap-2 relative">
+                <input 
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  onKeyDown={handleKeyDown}
+                  placeholder="Message Anchor..."
+                  className="w-full pr-12 pl-4 py-3 rounded-md outline-none text-[13px] border transition-colors focus:border-[var(--green)]"
+                  style={{ background: '#fff', borderColor: 'var(--line)', color: 'var(--ink)' }}
+                  disabled={isLoading}
+                />
+                <button 
+                  onClick={handleSend}
+                  disabled={!input.trim() || isLoading}
+                  className="absolute right-2 w-8 h-8 rounded-sm grid place-items-center disabled:opacity-50 transition-colors"
+                  style={{ background: 'var(--green)', color: '#fff' }}
+                >
+                  <Send size={14} />
+                </button>
+              </div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
 
-      <motion.button
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-20 right-4 sm:bottom-8 sm:right-8 z-40 bg-primary text-primary-foreground p-4 rounded-full shadow-xl flex items-center justify-center border-2 border-background"
-      >
-        {isOpen ? <X className="w-6 h-6" /> : <MessageSquare className="w-6 h-6" />}
-      </motion.button>
+      {!isOpen && (
+        <motion.button
+          whileHover={{ y: -2 }}
+          whileTap={{ scale: 0.98 }}
+          onClick={() => setIsOpen(true)}
+          className="fixed bottom-20 right-4 sm:bottom-8 sm:right-8 z-40 flex items-center gap-3 px-4 py-3 rounded-md border shadow-lg cursor-pointer"
+          style={{ background: '#e7efe8', borderColor: '#c8d9ca', color: 'var(--ink)' }}
+        >
+          <span className="grid place-items-center w-[30px] h-[30px] rounded-full" style={{ color: '#fff', background: 'var(--green)' }}>
+            <Sparkles size={14} />
+          </span>
+          <div className="text-left hidden sm:block pr-2">
+            <b className="block text-[13px] font-bold">Anchor companion</b>
+            <small className="block mt-0.5 text-[11px]" style={{ color: 'var(--muted)' }}>Here when you need help</small>
+          </div>
+          <ChevronRight size={15} className="hidden sm:block" style={{ color: 'var(--muted)' }} />
+        </motion.button>
+      )}
     </>
   );
 }

@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, Wind } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { X, Sparkles } from 'lucide-react';
 
 type Phase = 'inhale' | 'hold' | 'exhale' | 'idle';
 
@@ -13,9 +12,7 @@ export function Breathe() {
 
   useEffect(() => {
     if (phase === 'idle') return;
-
     let timeout: ReturnType<typeof setTimeout>;
-
     if (phase === 'inhale') {
       if (navigator.vibrate) navigator.vibrate(50);
       timeout = setTimeout(() => setPhase('hold'), 4000);
@@ -29,33 +26,27 @@ export function Breathe() {
         setPhase('inhale');
       }, 8000);
     }
-
     return () => clearTimeout(timeout);
   }, [phase]);
 
-  const startExercise = () => {
-    setCycles(0);
-    setPhase('inhale');
-  };
-
-  const stopExercise = () => {
-    setPhase('idle');
-    setCycles(0);
-  };
+  const startExercise = () => { setCycles(0); setPhase('inhale'); };
+  const stopExercise = () => { setPhase('idle'); setCycles(0); };
 
   return (
-    <div className="flex flex-col h-screen bg-background">
+    <div className="flex flex-col min-h-screen" style={{ background: 'var(--cream)' }}>
       <header className="p-4 flex items-center">
-        <Button variant="ghost" size="icon" onClick={() => navigate(-1)}>
-          <ArrowLeft className="w-5 h-5" />
-        </Button>
-        <span className="ml-2 font-medium">4-7-8 Breathing</span>
+        <button onClick={() => navigate(-1)} className="inline-flex items-center gap-2 text-xs" style={{ color: '#728279' }}>
+          <X size={16} /> Close
+        </button>
       </header>
 
       <main className="flex-1 flex flex-col items-center justify-center p-6 pb-32">
         <div className="text-center mb-12">
-          <h2 className="text-2xl font-semibold mb-2">Find your center</h2>
-          <p className="text-muted-foreground">
+          <p className="eyebrow mb-3">A MOMENT FOR YOU</p>
+          <h2 className="serif-heading text-[clamp(36px,5vw,56px)]">
+            Reset with <em>breath.</em>
+          </h2>
+          <p className="mt-3 text-sm" style={{ color: '#86928a' }}>
             {phase === 'idle' 
               ? 'A proven technique to reduce anxiety and calm the nervous system.'
               : `Completed ${cycles} cycle${cycles !== 1 ? 's' : ''}`}
@@ -63,23 +54,22 @@ export function Breathe() {
         </div>
 
         <div className="relative w-64 h-64 flex items-center justify-center">
-          {/* Base circle */}
-          <div className="absolute inset-0 rounded-full border-2 border-primary/20" />
+          <div className="absolute inset-0 rounded-full border-2" style={{ borderColor: '#d3e4d2' }} />
           
-          {/* Animated breathing circle */}
           {phase !== 'idle' && (
-            <div 
-              className={`absolute inset-4 rounded-full bg-primary/20 blur-sm 
-                ${phase === 'inhale' ? 'animate-breath-in' : 
-                  phase === 'hold' ? 'animate-breath-hold' : 
-                  'animate-breath-out'}`}
+            <motion.div 
+              animate={{
+                scale: phase === 'inhale' ? 1.6 : phase === 'hold' ? 1.6 : 1,
+              }}
+              transition={{ duration: phase === 'inhale' ? 4 : phase === 'hold' ? 0.3 : 8, ease: 'easeInOut' }}
+              className="absolute inset-4 rounded-full blur-sm"
+              style={{ background: 'rgba(72,116,93,0.15)' }}
             />
           )}
 
-          {/* Solid inner circle */}
-          <div className="absolute z-10 w-32 h-32 rounded-full bg-primary flex items-center justify-center shadow-lg transition-transform duration-1000">
-            <div className="text-primary-foreground text-center">
-              {phase === 'idle' && <Wind className="w-8 h-8 mx-auto" />}
+          <div className="absolute z-10 w-32 h-32 rounded-full grid place-items-center shadow-lg transition-transform duration-1000" style={{ background: 'var(--green)' }}>
+            <div className="text-center text-white">
+              {phase === 'idle' && <Sparkles className="w-8 h-8 mx-auto" />}
               {phase === 'inhale' && <span className="text-lg font-bold">Inhale (4)</span>}
               {phase === 'hold' && <span className="text-lg font-bold">Hold (7)</span>}
               {phase === 'exhale' && <span className="text-lg font-bold">Exhale (8)</span>}
@@ -89,13 +79,13 @@ export function Breathe() {
 
         <div className="mt-16">
           {phase === 'idle' ? (
-            <Button size="lg" onClick={startExercise} className="w-48 rounded-full h-12 text-lg">
+            <button onClick={startExercise} className="px-12 py-3.5 text-sm font-semibold text-white rounded-lg" style={{ background: 'var(--green)', boxShadow: '0 6px 12px #4d755b2b' }}>
               Start
-            </Button>
+            </button>
           ) : (
-            <Button variant="outline" size="lg" onClick={stopExercise} className="w-48 rounded-full h-12">
+            <button onClick={stopExercise} className="px-12 py-3 text-sm border rounded-lg" style={{ color: '#728279', borderColor: 'var(--line)' }}>
               Stop
-            </Button>
+            </button>
           )}
         </div>
       </main>
