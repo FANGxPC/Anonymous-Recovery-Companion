@@ -45,7 +45,7 @@ function App() {
 
   // Loading state while checking IndexedDB
   if (isSetup === null) {
-    return <div className="flex-center" style={{ minHeight: '100vh' }}>Loading secure vault...</div>;
+    return <div className="flex-1 flex items-center justify-center min-h-screen text-muted-foreground">Loading secure vault...</div>;
   }
 
   return (

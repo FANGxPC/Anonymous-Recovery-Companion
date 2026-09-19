@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Leaf, PlusCircle, Activity, ArrowRight, ShieldCheck, Download, Trash2 } from 'lucide-react';
+import { Leaf, PlusCircle, Activity, ArrowRight, ShieldCheck, Download, Trash2, LogOut } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useVault } from '../context/VaultContext';
 import { getEntries, cryptoShred } from '../vault/db';
 import type { CheckInEntry } from '../vault/db';
+
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Badge } from '@/components/ui/badge';
+import { Label } from '@/components/ui/label';
 
 export function Dashboard() {
   const navigate = useNavigate();
@@ -45,173 +51,240 @@ export function Dashboard() {
     a.click();
   };
 
-  // Determine the current "Season" (milestone)
-  const days = entries.length; // Simplified for hackathon
+  const days = entries.length;
   let season = 'The Grounding Season';
   if (days > 7) season = 'The Growth Season';
   if (days > 30) season = 'The Renewal Season';
 
   return (
-    <div className="container">
-      <div className="flex-between mb-8 mt-4">
-        <h2>Your Journey</h2>
-        <button className="btn btn-secondary" style={{ padding: '0.5rem 1rem' }} onClick={logout}>
-          Lock Screen
-        </button>
-      </div>
-
-      <motion.div 
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="glass-card mb-8"
-      >
-        <div className="flex-between mb-4">
-          <div className="flex-center" style={{ gap: '0.5rem', color: 'var(--accent-success)' }}>
-            <Leaf size={24} />
-            <span style={{ fontWeight: 600, fontSize: '1.25rem' }}>{season}</span>
-          </div>
-          
-          <div 
-            className="flex-center" 
-            style={{ 
-              gap: '0.25rem', 
-              fontSize: '0.85rem', 
-              backgroundColor: '#dbeafe', 
-              color: 'var(--accent-primary)',
-              padding: '0.25rem 0.75rem',
-              borderRadius: '9999px',
-            }}
-          >
-            <ShieldCheck size={16} />
-            <span>Private & Secure</span>
-          </div>
+    <div className="flex-1 w-full max-w-4xl mx-auto p-4 md:p-8 space-y-8">
+      {/* Header */}
+      <header className="flex items-center justify-between pb-4 border-b">
+        <div>
+          <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
+          <p className="text-muted-foreground mt-1">Your private recovery journey.</p>
         </div>
+        <Button variant="outline" size="sm" onClick={logout} className="hidden sm:flex gap-2">
+          <LogOut className="w-4 h-4" /> Lock Screen
+        </Button>
+        <Button variant="outline" size="icon" onClick={logout} className="sm:hidden">
+          <LogOut className="w-4 h-4" />
+        </Button>
+      </header>
+
+      {/* Main Actions Area */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         
-        <p className="text-muted">
-          Milestones are chapters, not streaks. Every day is a step forward, and your history is always yours.
-        </p>
-
-        <div className="flex-col mt-6" style={{ gap: '1rem' }}>
-          <button 
-            className="btn btn-primary interactive w-full"
-            onClick={() => navigate('/checkin')}
-            style={{ justifyContent: 'space-between' }}
-          >
-            <div className="flex-center" style={{ gap: '0.5rem' }}>
-              <PlusCircle size={20} />
-              <span>Daily Check-in</span>
-            </div>
-            <ArrowRight size={20} />
-          </button>
-        </div>
-      </motion.div>
-
-      <h3 className="mb-4 text-tertiary" style={{ fontSize: '1.25rem' }}>Recent Entries</h3>
-      
-      {isLoading ? (
-        <p className="text-muted text-center py-8">Loading your journal...</p>
-      ) : entries.length === 0 ? (
-        <div className="glass-card text-center text-muted" style={{ padding: '3rem 1rem' }}>
-          <Activity size={32} style={{ margin: '0 auto 1rem', opacity: 0.5 }} />
-          <p>No entries yet. Start your journey today.</p>
-        </div>
-      ) : (
-        <div className="flex-col" style={{ gap: '1rem' }}>
-          {entries.slice(0, 5).map(entry => (
-            <motion.div 
-              key={entry.id} 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="glass-card" 
-              style={{ padding: '1rem 1.5rem' }}
-            >
-              <div className="flex-between mb-2">
-                <span style={{ textTransform: 'capitalize', fontWeight: 600, color: 'var(--text-primary)' }}>
-                  Mood: {entry.mood}
-                </span>
-                <span className="text-sm text-muted">
-                  {new Date(entry.timestamp).toLocaleDateString()}
-                </span>
+        {/* Milestone Card */}
+        <motion.div 
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="md:col-span-2"
+        >
+          <Card className="h-full border-primary/10 bg-primary/5">
+            <CardHeader className="pb-4">
+              <div className="flex justify-between items-start">
+                <div className="flex items-center gap-2 text-primary">
+                  <Leaf className="w-6 h-6" />
+                  <CardTitle className="text-xl">{season}</CardTitle>
+                </div>
+                <Badge variant="secondary" className="gap-1.5 bg-background shadow-sm text-xs font-medium text-emerald-600 border-emerald-200">
+                  <ShieldCheck className="w-3.5 h-3.5" />
+                  Private & Secure
+                </Badge>
               </div>
-              {entry.triggerCategory && (
-                <div className="text-sm text-accent mb-2">
-                  Trigger: {entry.triggerCategory}
+              <CardDescription className="pt-2 text-primary/80">
+                Milestones are chapters, not streaks. Every day is a step forward, and your history is always yours.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Button 
+                onClick={() => navigate('/checkin')}
+                className="w-full justify-between h-14 text-base font-semibold shadow-sm"
+              >
+                <div className="flex items-center gap-3">
+                  <PlusCircle className="w-5 h-5" />
+                  Daily Check-in
+                </div>
+                <ArrowRight className="w-5 h-5" />
+              </Button>
+            </CardContent>
+          </Card>
+        </motion.div>
+
+        {/* Coping Plan Card (Side) */}
+        <motion.div 
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1 }}
+          className="md:col-span-1"
+        >
+          <Card className="h-full">
+            <CardHeader>
+              <CardTitle className="text-lg">My Coping Plan</CardTitle>
+              <CardDescription>Verified strategies.</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              {entries.filter(e => e.ragResponse).length === 0 ? (
+                <p className="text-sm text-muted-foreground text-center py-4">Complete a check-in to generate a plan.</p>
+              ) : (
+                <div className="space-y-3">
+                  {entries.filter(e => e.ragResponse).slice(0, 2).map((entry) => (
+                    <div key={`plan-${entry.id}`} className="text-sm bg-muted/50 p-3 rounded-md border">
+                      <p className="line-clamp-3 leading-snug">{entry.ragResponse?.text}</p>
+                    </div>
+                  ))}
+                  <Button variant="secondary" className="w-full mt-2 text-sm" onClick={() => window.print()}>
+                    Print Full Plan
+                  </Button>
                 </div>
               )}
-              {entry.note && (
-                <p className="text-muted text-sm" style={{ marginBottom: 0 }}>
-                  {entry.note.length > 100 ? entry.note.substring(0, 100) + '...' : entry.note}
-                </p>
-              )}
-            </motion.div>
-          ))}
-        </div>
-      )}
-
-      {/* Hardware Connection */}
-      <div className="mt-8 mb-8 pt-8" style={{ borderTop: '2px solid var(--border-color)' }}>
-        <h3 className="mb-4">Physical Anchor Button</h3>
-        <p className="text-sm text-muted mb-6">Connect your Bluetooth ESP32 button for instant, hands-free crisis support.</p>
-        <div className="gap-4">
-          <button 
-            className="btn btn-secondary flex-center" 
-            style={{ flex: 1, backgroundColor: '#eff6ff', color: 'var(--accent-primary)', borderColor: '#bfdbfe' }}
-            onClick={async () => {
-              const { connectAnchorButton } = await import('../hardware/bluetooth');
-              connectAnchorButton();
-            }}
-          >
-            Connect Bluetooth Device
-          </button>
-          <button 
-            className="btn btn-secondary flex-center" 
-            style={{ flex: 1 }}
-            onClick={async () => {
-              const { simulateHardwarePress } = await import('../hardware/bluetooth');
-              simulateHardwarePress();
-            }}
-          >
-            Simulate Press
-          </button>
-        </div>
+            </CardContent>
+          </Card>
+        </motion.div>
       </div>
 
-      {/* Settings / Privacy Actions */}
-      <div className="mt-8 mb-8 pt-8" style={{ borderTop: '2px solid var(--border-color)' }}>
-        <h3 className="mb-4">Privacy & Data</h3>
-        <p className="text-sm text-muted mb-6">Because your data never leaves your device, you are in full control of it.</p>
-        <div className="gap-4">
-          <button className="btn btn-secondary" style={{ flex: 1 }} onClick={exportData}>
-            <Download size={20} />
-            Save a Copy
-          </button>
-          
-          <button 
-            className="btn btn-danger" 
-            style={{ flex: 1 }} 
-            onClick={() => setShowShredConfirm(true)}
-          >
-            <Trash2 size={20} />
-            Delete All My Data
-          </button>
-        </div>
+      {/* History Section */}
+      <div>
+        <h3 className="text-lg font-semibold mb-4">Recent Entries</h3>
         
-        {showShredConfirm && (
-          <motion.div 
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            className="mt-6 p-6"
-            style={{ backgroundColor: '#fef2f2', borderRadius: 'var(--radius-lg)', border: '2px solid #fca5a5' }}
-          >
-            <p className="text-danger mb-6">
-              <strong>WARNING:</strong> This will instantly and permanently erase all your journal entries and settings from this device. We cannot recover it for you.
-            </p>
-            <div className="gap-4">
-              <button className="btn btn-secondary w-full" onClick={() => setShowShredConfirm(false)}>Cancel</button>
-              <button className="btn w-full crisis-bg" onClick={handleCryptoShred}>Yes, Permanently Delete</button>
-            </div>
-          </motion.div>
+        {isLoading ? (
+          <div className="py-12 text-center text-muted-foreground flex flex-col items-center">
+            <Activity className="w-8 h-8 mb-4 opacity-50 animate-pulse" />
+            Loading your journal...
+          </div>
+        ) : entries.length === 0 ? (
+          <Card className="py-12 border-dashed bg-transparent shadow-none">
+            <CardContent className="flex flex-col items-center text-muted-foreground text-center">
+              <Activity className="w-8 h-8 mb-4 opacity-30" />
+              <p>No entries yet. Start your journey today.</p>
+            </CardContent>
+          </Card>
+        ) : (
+          <div className="grid gap-4 md:grid-cols-2">
+            {entries.slice(0, 4).map(entry => (
+              <motion.div 
+                key={entry.id} 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+              >
+                <Card className="h-full shadow-sm hover:shadow-md transition-shadow">
+                  <CardHeader className="pb-3">
+                    <div className="flex justify-between items-center">
+                      <Badge variant="outline" className="capitalize">Mood: {entry.mood}</Badge>
+                      <span className="text-xs text-muted-foreground">
+                        {new Date(entry.timestamp).toLocaleDateString()}
+                      </span>
+                    </div>
+                    {entry.triggerCategory && (
+                      <div className="text-sm font-medium text-primary mt-2">
+                        Trigger: {entry.triggerCategory}
+                      </div>
+                    )}
+                  </CardHeader>
+                  {entry.note && (
+                    <CardContent className="pt-0">
+                      <p className="text-sm text-muted-foreground line-clamp-3 leading-relaxed">
+                        {entry.note}
+                      </p>
+                    </CardContent>
+                  )}
+                </Card>
+              </motion.div>
+            ))}
+          </div>
         )}
+      </div>
+
+      {/* Settings Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-8 border-t">
+        {/* Support Network */}
+        <Card className="shadow-sm">
+          <CardHeader>
+            <CardTitle className="text-lg">Support Network</CardTitle>
+            <CardDescription>Trusted contact for SMS alerts.</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-2">
+              <Label htmlFor="trusted-contact">Phone Number</Label>
+              <Input 
+                id="trusted-contact"
+                type="tel" 
+                placeholder="+1 (555) 000-0000" 
+                defaultValue={localStorage.getItem('anchor_trusted_contact') || ''}
+                onChange={(e: any) => localStorage.setItem('anchor_trusted_contact', e.target.value)}
+              />
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Hardware */}
+        <Card className="shadow-sm">
+          <CardHeader>
+            <CardTitle className="text-lg">Physical Anchor Button</CardTitle>
+            <CardDescription>Connect an ESP32 Bluetooth button.</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-3">
+            <Button 
+              variant="secondary" 
+              className="w-full text-blue-700 bg-blue-50 hover:bg-blue-100 border-blue-200"
+              onClick={async () => {
+                const { connectAnchorButton } = await import('../hardware/bluetooth');
+                connectAnchorButton();
+              }}
+            >
+              Connect Device
+            </Button>
+            <Button 
+              variant="outline" 
+              className="w-full"
+              onClick={async () => {
+                const { simulateHardwarePress } = await import('../hardware/bluetooth');
+                simulateHardwarePress();
+              }}
+            >
+              Simulate Press
+            </Button>
+          </CardContent>
+        </Card>
+
+        {/* Data & Privacy */}
+        <Card className="shadow-sm border-destructive/20">
+          <CardHeader>
+            <CardTitle className="text-lg text-destructive">Privacy & Data</CardTitle>
+            <CardDescription>You are in full control.</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-3">
+            {!showShredConfirm ? (
+              <>
+                <Button variant="outline" className="w-full" onClick={exportData}>
+                  <Download className="w-4 h-4 mr-2" /> Save a Copy
+                </Button>
+                <Button variant="destructive" className="w-full" onClick={() => setShowShredConfirm(true)}>
+                  <Trash2 className="w-4 h-4 mr-2" /> Delete All Data
+                </Button>
+              </>
+            ) : (
+              <motion.div 
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                className="space-y-4 bg-destructive/10 p-4 rounded-md border border-destructive/20"
+              >
+                <p className="text-sm font-medium text-destructive leading-tight">
+                  WARNING: This will instantly and permanently erase all your data from this device.
+                </p>
+                <div className="space-y-2">
+                  <Button variant="destructive" className="w-full font-bold" onClick={handleCryptoShred}>
+                    Confirm Delete
+                  </Button>
+                  <Button variant="ghost" className="w-full" onClick={() => setShowShredConfirm(false)}>
+                    Cancel
+                  </Button>
+                </div>
+              </motion.div>
+            )}
+          </CardContent>
+        </Card>
       </div>
     </div>
   );

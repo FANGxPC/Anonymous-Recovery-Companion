@@ -6,6 +6,10 @@ import { useVault } from '../context/VaultContext';
 import { deriveKey } from '../vault/crypto';
 import { getSalt } from '../vault/db';
 
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+
 export function Login() {
   const [passphrase, setPassphrase] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -25,9 +29,6 @@ export function Login() {
       if (!salt) throw new Error('Vault is corrupted (salt missing).');
       
       const key = await deriveKey(passphrase, salt);
-      
-      // Note: We can't verify if the password is correct immediately without trying to decrypt something.
-      // For simplicity, we just set the key. If decryption fails later, it means wrong password.
       login(key);
       navigate('/dashboard');
     } catch (err) {
@@ -39,59 +40,50 @@ export function Login() {
   };
 
   return (
-    <div className="container flex-center">
+    <div className="flex-1 flex items-center justify-center p-4">
       <motion.div 
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="glass-card w-full"
-        style={{ maxWidth: '400px' }}
+        className="w-full max-w-md"
       >
-        <div className="flex-col flex-center mb-6 text-center">
-          <div 
-            style={{ 
-              backgroundColor: 'var(--bg-surface-elevated)', 
-              padding: '1rem', 
-              borderRadius: '50%',
-              marginBottom: '1rem',
-              border: '1px solid var(--border-color)'
-            }}
-          >
-            <Lock size={32} className="text-accent" />
-          </div>
-          <h2>Welcome Back</h2>
-          <p className="text-muted text-sm">
-            Enter your private password to access your space.
-          </p>
-        </div>
-
-        <form onSubmit={handleLogin}>
-          <div className="input-group">
-            <div style={{ position: 'relative' }}>
-              <KeyRound size={20} style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-tertiary)' }} />
-              <input 
-                type="password" 
-                className="input" 
-                style={{ paddingLeft: '3rem' }}
-                value={passphrase}
-                onChange={(e) => setPassphrase(e.target.value)}
-                placeholder="Your Password"
-                required
-              />
+        <Card>
+          <CardHeader className="text-center pb-8">
+            <div className="mx-auto bg-muted p-3 rounded-full mb-4 border shadow-sm">
+              <Lock className="w-8 h-8 text-primary" />
             </div>
-          </div>
+            <CardTitle className="text-2xl font-bold tracking-tight">Welcome Back</CardTitle>
+            <CardDescription className="text-base mt-2">
+              Enter your private password to access your space.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <form onSubmit={handleLogin} className="space-y-6">
+              <div className="relative">
+                <KeyRound className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                <Input 
+                  type="password" 
+                  className="pl-10 h-12 text-lg"
+                  value={passphrase}
+                  onChange={(e: any) => setPassphrase(e.target.value)}
+                  placeholder="Your Password"
+                  required
+                />
+              </div>
 
-          {error && (
-            <p className="text-danger text-sm mb-4 text-center">{error}</p>
-          )}
+              {error && (
+                <p className="text-destructive text-sm text-center font-medium">{error}</p>
+              )}
 
-          <button 
-            type="submit" 
-            className="btn btn-primary w-full" 
-            disabled={isLoading || !passphrase}
-          >
-            {isLoading ? 'Unlocking...' : 'Unlock'}
-          </button>
-        </form>
+              <Button 
+                type="submit" 
+                className="w-full h-12 text-base font-semibold"
+                disabled={isLoading || !passphrase}
+              >
+                {isLoading ? 'Unlocking...' : 'Unlock'}
+              </Button>
+            </form>
+          </CardContent>
+        </Card>
       </motion.div>
     </div>
   );

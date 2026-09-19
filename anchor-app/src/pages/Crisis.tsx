@@ -1,9 +1,12 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Phone, MessageSquare, ArrowLeft, HeartPulse, ExternalLink, Mic, MicOff } from 'lucide-react';
+import { Phone, MessageSquare, ArrowLeft, ExternalLink, Mic, MicOff, AlertCircle } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
-// TypeScript declaration for Web Speech API
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+
 declare global {
   interface Window {
     SpeechRecognition: any;
@@ -17,14 +20,12 @@ export function Crisis() {
   const recognitionRef = useRef<any>(null);
 
   useEffect(() => {
-    // 1. Voice Synthesis (Read aloud)
     const utterance = new SpeechSynthesisUtterance(
       "You are not alone. Help is available. Say 'call lifeline' to dial 9 8 8."
     );
     utterance.rate = 0.9;
     window.speechSynthesis.speak(utterance);
 
-    // 2. Voice Recognition (Listen for commands)
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     if (SpeechRecognition) {
       const recognition = new SpeechRecognition();
@@ -56,6 +57,7 @@ export function Crisis() {
 
       try {
         recognition.start();
+        // eslint-disable-next-line
         setIsListening(true);
         recognitionRef.current = recognition;
       } catch (err) {
@@ -72,86 +74,113 @@ export function Crisis() {
   }, []);
 
   return (
-    <div className="container flex-center" style={{ minHeight: '100vh', padding: '1rem' }}>
+    <div className="flex-1 flex flex-col items-center justify-center p-4 bg-background min-h-screen">
       <motion.div 
-        initial={{ opacity: 0, scale: 0.95 }}
+        initial={{ opacity: 0, scale: 0.98 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="glass-card crisis-pulse w-full text-center"
-        style={{ 
-          maxWidth: '500px', 
-          backgroundColor: 'rgba(239, 68, 68, 0.1)', 
-          borderColor: 'rgba(239, 68, 68, 0.3)' 
-        }}
+        className="w-full max-w-lg"
       >
-        <div 
-          className="flex-center mx-auto mb-6"
-          style={{ 
-            backgroundColor: 'var(--accent-danger)', 
-            width: '80px', 
-            height: '80px', 
-            borderRadius: '50%',
-            color: 'white',
-            margin: '0 auto 1.5rem auto'
-          }}
-        >
-          <HeartPulse size={40} />
-        </div>
-        
-        {/* Voice Mode Indicator */}
-        <div className="flex-center mb-4" style={{ gap: '0.5rem', color: isListening ? 'var(--accent-danger)' : 'var(--text-tertiary)', fontSize: '0.9rem', fontWeight: 500 }}>
-          {isListening ? (
-            <>
-              <motion.div
-                animate={{ opacity: [1, 0.5, 1] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-              >
-                <Mic size={18} />
-              </motion.div>
-              <span>Voice Mode: Say "Call 988"</span>
-            </>
-          ) : (
-            <>
-              <MicOff size={18} />
-              <span>Voice Mode Unavailable</span>
-            </>
-          )}
-        </div>
-        
-        <h1 className="text-danger mb-2" style={{ fontSize: '2.5rem' }}>You are not alone.</h1>
-        <p className="text-primary mb-8" style={{ fontSize: '1.1rem' }}>
-          Help is available right now. It is free, confidential, and available 24/7.
-        </p>
+        <Card className="border-destructive shadow-lg overflow-hidden">
+          <div className="h-2 w-full bg-destructive" />
+          <CardHeader className="text-center pb-6">
+            <div className="mx-auto bg-destructive/10 p-4 rounded-full mb-4">
+              <AlertCircle className="w-10 h-10 text-destructive" />
+            </div>
+            
+            <div className="flex justify-center mb-4">
+              {isListening ? (
+                <Badge variant="outline" className="gap-2 bg-destructive/5 text-destructive border-destructive/30 px-3 py-1">
+                  <motion.div
+                    animate={{ opacity: [1, 0.5, 1] }}
+                    transition={{ duration: 1.5, repeat: Infinity }}
+                  >
+                    <Mic className="w-3.5 h-3.5" />
+                  </motion.div>
+                  Voice Mode: Say "Call 988"
+                </Badge>
+              ) : (
+                <Badge variant="secondary" className="gap-2 px-3 py-1 text-muted-foreground">
+                  <MicOff className="w-3.5 h-3.5" />
+                  Voice Mode Unavailable
+                </Badge>
+              )}
+            </div>
 
-        <div className="flex-col gap-4 mb-8">
-          <a href="tel:988" className="btn crisis-bg w-full" style={{ padding: '1.25rem', fontSize: '1.25rem' }}>
-            <Phone size={24} />
-            Call 988 (Suicide & Crisis Lifeline)
-          </a>
+            <CardTitle className="text-3xl font-bold tracking-tight text-destructive mb-2">You are not alone.</CardTitle>
+            <CardDescription className="text-base text-foreground/80 font-medium px-4">
+              Help is available right now. It is free, confidential, and available 24/7.
+            </CardDescription>
+          </CardHeader>
           
-          <a href="sms:988" className="btn btn-secondary w-full" style={{ padding: '1rem', fontSize: '1.1rem', backgroundColor: 'rgba(255,255,255,0.05)' }}>
-            <MessageSquare size={20} />
-            Text 988
-          </a>
+          <CardContent className="space-y-6">
+            <div className="grid gap-3">
+              <Button 
+                asChild
+                size="lg" 
+                className="w-full h-16 text-lg font-bold bg-destructive hover:bg-destructive/90 text-destructive-foreground shadow-sm"
+              >
+                <a href="tel:988">
+                  <Phone className="w-5 h-5 mr-3" />
+                  Call 988 (Crisis Lifeline)
+                </a>
+              </Button>
+              
+              <Button 
+                asChild
+                variant="outline" 
+                size="lg" 
+                className="w-full h-14 text-base font-semibold border-2"
+              >
+                <a href="sms:988">
+                  <MessageSquare className="w-5 h-5 mr-3" />
+                  Text 988
+                </a>
+              </Button>
 
-          <a href="tel:18006624357" className="btn btn-secondary w-full" style={{ padding: '1rem', fontSize: '1.1rem', backgroundColor: 'rgba(255,255,255,0.05)' }}>
-            <Phone size={20} />
-            Call SAMHSA (1-800-662-4357)
-          </a>
-        </div>
+              <Button 
+                asChild
+                variant="outline" 
+                size="lg" 
+                className="w-full h-14 text-base font-semibold border-2"
+              >
+                <a href="tel:18006624357">
+                  <Phone className="w-5 h-5 mr-3" />
+                  Call SAMHSA (1-800-662-4357)
+                </a>
+              </Button>
 
-        <div className="flex-center mb-6 text-sm text-muted">
-          <ExternalLink size={16} className="mr-2" style={{ marginRight: '0.5rem' }} />
-          These links will open your phone app securely.
-        </div>
+              {localStorage.getItem('anchor_trusted_contact') && (
+                <Button 
+                  asChild
+                  variant="outline" 
+                  size="lg" 
+                  className="w-full h-14 text-base font-semibold border-2 border-primary/20 hover:bg-primary/5 text-primary mt-2"
+                >
+                  <a href={`sms:${localStorage.getItem('anchor_trusted_contact')}?body=I am in crisis and using my Anchor app. I need your support.`}>
+                    <MessageSquare className="w-5 h-5 mr-3" />
+                    Text My Trusted Contact
+                  </a>
+                </Button>
+              )}
+            </div>
 
-        <button 
-          className="btn btn-secondary" 
-          onClick={() => navigate('/dashboard')}
-          style={{ border: 'none' }}
-        >
-          <ArrowLeft size={18} />
-          I am safe now, return to dashboard
-        </button>
+            <div className="flex items-center justify-center text-xs text-muted-foreground pt-4">
+              <ExternalLink className="w-3.5 h-3.5 mr-1.5" />
+              These links will securely open your phone app.
+            </div>
+
+            <div className="pt-4 mt-4 border-t">
+              <Button 
+                variant="ghost" 
+                className="w-full text-muted-foreground hover:text-foreground"
+                onClick={() => navigate('/dashboard')}
+              >
+                <ArrowLeft className="w-4 h-4 mr-2" />
+                I am safe now, return to dashboard
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
       </motion.div>
     </div>
   );

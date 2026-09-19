@@ -51,7 +51,7 @@ export async function connectAnchorButton(): Promise<boolean> {
   }
 }
 
-function handleButtonPress(event: Event) {
+function handleButtonPress(_event: Event) {
   console.warn("Anchor Button Physical Press Detected!");
   
   // In a real device, you'd read the payload.

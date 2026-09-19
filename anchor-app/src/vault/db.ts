@@ -9,6 +9,8 @@ import { openDB } from 'idb';
 import type { DBSchema, IDBPDatabase } from 'idb';
 import { encryptData, decryptData } from './crypto';
 
+import type { SupportResponse } from '../brain/contracts';
+
 // The types of data we store in plain text before encryption
 export interface CheckInEntry {
   id: string;
@@ -16,6 +18,7 @@ export interface CheckInEntry {
   mood: string;
   triggerCategory?: string;
   note?: string;
+  ragResponse?: SupportResponse;
 }
 
 export interface GoalEntry {
