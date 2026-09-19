@@ -1,0 +1,116 @@
+# ==========================================
+# System Files
+# ==========================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.lnk
+*.cab
+*.msi
+*.msm
+*.msp
+[Dd]ownloads/
+$RECYCLE.BIN/
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# ==========================================
+# Editors and IDEs
+# ==========================================
+# Visual Studio Code
+.vscode/
+!.vscode/extensions.json
+*.code-workspace
+
+# JetBrains (IntelliJ, WebStorm, PyCharm, etc.)
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# Eclipse
+.metadata/
+.classpath
+.project
+.settings/
+
+# NetBeans
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+
+# Vim / Emacs
+*~
+*.swp
+*.swo
+.netrwhist
+\#*\#
+.\#*
+
+# ==========================================
+# Logs and Databases
+# ==========================================
+*.log
+*.sql
+*.sqlite
+
+# ==========================================
+# Packages and Dependencies
+# ==========================================
+# Node / JavaScript
+node_modules/
+/jspm_packages/
+.npm/
+.eslintcache
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+env/
+
+# Ruby
+.bundle/
+vendor/bundle/
+log/
+tmp/
+
+# Java / Maven / Gradle
+target/
+.gradle/
+build/
+
+# ==========================================
+# Environment Variables & Secrets
+# ==========================================
+.env
+.env.local
+.env.*.local
+*.env
+*.pem
+*.key
+*.secret
