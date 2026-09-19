@@ -4,11 +4,13 @@ import { ChevronRight, Filter, ArrowRight } from 'lucide-react';
 import { useVault } from '../context/VaultContext';
 import { getEntries } from '../vault/db';
 import type { CheckInEntry } from '../vault/db';
+import { ReflectionModal } from '../components/ReflectionModal';
 
 export function Journal() {
   const { cryptoKey } = useVault();
   const [entries, setEntries] = useState<CheckInEntry[]>([]);
   const [filterMood, setFilterMood] = useState<string | null>(null);
+  const [selectedEntry, setSelectedEntry] = useState<CheckInEntry | null>(null);
 
   useEffect(() => {
     async function loadData() {
@@ -88,7 +90,11 @@ export function Journal() {
                     <p style={{ color: '#6e8274' }}>{entry.ragResponse.text}</p>
                   </div>
                 )}
-                <button className="mt-3 text-[10px] inline-flex items-center gap-1" style={{ color: '#6f9777' }}>
+                <button 
+                  onClick={() => setSelectedEntry(entry)}
+                  className="mt-3 text-[10px] inline-flex items-center gap-1" 
+                  style={{ color: '#6f9777' }}
+                >
                   Read reflection <ChevronRight size={14} />
                 </button>
               </motion.article>
@@ -96,6 +102,10 @@ export function Journal() {
           })
         )}
       </div>
+
+      {selectedEntry && (
+        <ReflectionModal entry={selectedEntry} onClose={() => setSelectedEntry(null)} />
+      )}
     </div>
   );
 }

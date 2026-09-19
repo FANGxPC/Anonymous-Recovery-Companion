@@ -188,3 +188,79 @@ export async function cryptoShred(): Promise<void> {
   // We should also clear any other data like the transformers cache if we can,
   // but for the hackathon this is sufficient for user data.
 }
+
+export async function seedMockData(key: CryptoKey): Promise<void> {
+  const db = await getDB();
+  const mockEntries: CheckInEntry[] = [
+    {
+      id: crypto.randomUUID(),
+      timestamp: Date.now() - 1000 * 60 * 60 * 24 * 1, // 1 day ago
+      mood: 'good',
+      triggerCategory: 'Social pressure',
+      note: 'Went to the party. Felt a bit anxious at first but stayed grounded.',
+      ragResponse: {
+        text: 'It is wonderful that you practiced grounding in a stressful situation. Acknowledging the anxiety without letting it overwhelm you is a huge step.',
+        source: 'Anchor AI',
+        excerpt: '',
+        crisis: false
+      }
+    },
+    {
+      id: crypto.randomUUID(),
+      timestamp: Date.now() - 1000 * 60 * 60 * 24 * 3, // 3 days ago
+      mood: 'low',
+      triggerCategory: 'Stress or overwhelm',
+      note: 'Work was incredibly demanding today. Felt completely drained and had some cravings.',
+      ragResponse: {
+        text: 'Stress is a very common trigger. Remember to take things one hour at a time and try the 4-7-8 breathing when the overwhelm hits.',
+        source: 'Anchor AI',
+        excerpt: '',
+        crisis: false
+      }
+    },
+    {
+      id: crypto.randomUUID(),
+      timestamp: Date.now() - 1000 * 60 * 60 * 24 * 5, // 5 days ago
+      mood: 'okay',
+      triggerCategory: 'Stress or overwhelm',
+      note: 'Managing better today, but the background stress is still there.',
+      ragResponse: {
+        text: 'Consistency is key. You are doing well by just noticing the background stress and naming it.',
+        source: 'Anchor AI',
+        excerpt: '',
+        crisis: false
+      }
+    },
+    {
+      id: crypto.randomUUID(),
+      timestamp: Date.now() - 1000 * 60 * 60 * 24 * 7, // 7 days ago
+      mood: 'low',
+      triggerCategory: 'Financial worry',
+      note: 'Looked at the bills and panicked a little.',
+      ragResponse: {
+        text: 'Financial worries can trigger deep anxiety. Focus on what you can control right now in this exact moment.',
+        source: 'Anchor AI',
+        excerpt: '',
+        crisis: false
+      }
+    },
+    {
+      id: crypto.randomUUID(),
+      timestamp: Date.now() - 1000 * 60 * 60 * 24 * 10, // 10 days ago
+      mood: 'great',
+      triggerCategory: 'Social pressure',
+      note: 'Hung out with friends who don\'t drink. Felt incredibly freeing and safe.',
+      ragResponse: {
+        text: 'Building a safe environment and spending time with supportive people is one of the best things you can do for your recovery.',
+        source: 'Anchor AI',
+        excerpt: '',
+        crisis: false
+      }
+    }
+  ];
+
+  for (const entry of mockEntries) {
+    await saveEntry(entry, key);
+  }
+}
+

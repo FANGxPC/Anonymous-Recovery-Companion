@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import { ShieldCheck, Download, Trash2, Shield, Smartphone, Server } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useVault } from '../context/VaultContext';
-import { getEntries, getGoals, cryptoShred } from '../vault/db';
+import { getEntries, getGoals, cryptoShred, seedMockData } from '../vault/db';
 
 export function Settings() {
   const navigate = useNavigate();
   const { cryptoKey, logout, isSetup } = useVault();
   const [isExporting, setIsExporting] = useState(false);
   const [isShredding, setIsShredding] = useState(false);
+  const [isSeeding, setIsSeeding] = useState(false);
 
   const handleExport = async () => {
     if (!cryptoKey) return;
@@ -44,6 +45,21 @@ export function Settings() {
       alert("Failed to shred vault");
     } finally {
       setIsShredding(false);
+    }
+  };
+
+  const handleSeed = async () => {
+    if (!cryptoKey) return;
+    setIsSeeding(true);
+    try {
+      await seedMockData(cryptoKey);
+      alert("Mock data loaded! Check your Dashboard and Triggers page.");
+      navigate('/dashboard');
+    } catch (err) {
+      console.error(err);
+      alert("Failed to load mock data");
+    } finally {
+      setIsSeeding(false);
     }
   };
 
@@ -158,6 +174,9 @@ export function Settings() {
           <div className="flex flex-col sm:flex-row gap-3">
             <button onClick={handleExport} disabled={isExporting} className="flex-1 inline-flex items-center justify-center gap-2 py-3 text-sm font-semibold rounded-sm border" style={{ color: '#a45f4d', background: 'transparent', borderColor: '#e6c3b6' }}>
               <Download size={16} /> {isExporting ? 'Exporting...' : 'Export Vault'}
+            </button>
+            <button onClick={handleSeed} disabled={isSeeding} className="flex-1 inline-flex items-center justify-center gap-2 py-3 text-sm font-semibold rounded-sm border" style={{ color: '#a45f4d', background: '#fff9f5', borderColor: '#e6c3b6' }}>
+              Load Demo Data
             </button>
             <button onClick={handleShred} disabled={isShredding} className="flex-1 inline-flex items-center justify-center gap-2 py-3 text-sm font-semibold text-white rounded-sm" style={{ background: '#c96b54' }}>
               <Trash2 size={16} /> Shred Vault

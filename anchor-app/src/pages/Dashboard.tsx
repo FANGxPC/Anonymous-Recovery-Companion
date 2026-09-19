@@ -3,11 +3,12 @@ import { motion } from 'framer-motion';
 import { Leaf, ArrowRight, ShieldCheck, Sparkles, KeyRound, LockKeyhole, ChevronRight, LogOut } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useVault } from '../context/VaultContext';
-import { getEntries } from '../vault/db';
+import { getEntries, seedMockData } from '../vault/db';
 import type { CheckInEntry } from '../vault/db';
 
 import { Button } from '@/components/ui/button';
 import { SmartwatchSimulator } from '../components/SmartwatchSimulator';
+import { ReflectionModal } from '../components/ReflectionModal';
 
 const todayString = new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' }).toUpperCase();
 
@@ -16,12 +17,21 @@ export function Dashboard() {
   const { cryptoKey, logout } = useVault();
   const [entries, setEntries] = useState<CheckInEntry[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [selectedEntry, setSelectedEntry] = useState<CheckInEntry | null>(null);
 
   useEffect(() => {
     async function loadData() {
       if (!cryptoKey) return;
       try {
-        const loadedEntries = await getEntries(cryptoKey);
+        let loadedEntries = await getEntries(cryptoKey);
+        
+        // Auto-seed for hackathon demo
+        if (!localStorage.getItem('anchor_seeded_v2')) {
+          await seedMockData(cryptoKey);
+          localStorage.setItem('anchor_seeded_v2', 'true');
+          loadedEntries = await getEntries(cryptoKey);
+        }
+        
         setEntries(loadedEntries);
       } catch (err) {
         console.error('Failed to load entries:', err);
@@ -145,9 +155,13 @@ export function Dashboard() {
                   <p className="mt-7 mb-1.5 text-xs font-semibold" style={{ color: '#6e806f' }}>{entry.triggerCategory}</p>
                 )}
                 {entry.note && (
-                  <p className="text-xs leading-relaxed mb-3" style={{ color: '#6f7972' }}>{entry.note}</p>
+                  <p className="text-xs leading-relaxed mb-3 line-clamp-3" style={{ color: '#6f7972' }}>{entry.note}</p>
                 )}
-                <button className="text-[10px] inline-flex items-center gap-1" style={{ color: '#6f9777' }}>
+                <button 
+                  onClick={() => setSelectedEntry(entry)}
+                  className="text-[10px] inline-flex items-center gap-1" 
+                  style={{ color: '#6f9777' }}
+                >
                   Read reflection <ChevronRight size={14} />
                 </button>
               </article>
@@ -220,6 +234,9 @@ export function Dashboard() {
         <SmartwatchSimulator />
       </section>
 
+      {selectedEntry && (
+        <ReflectionModal entry={selectedEntry} onClose={() => setSelectedEntry(null)} />
+      )}
     </div>
   );
 }
